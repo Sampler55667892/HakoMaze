@@ -8,30 +8,32 @@ namespace HakoMaze.Logics
     {
         public void Draw( MainWindowViewModel vm )
         {
-            if (vm.MazeFrameData.SizeX == 0 || vm.MazeFrameData.SizeY == 0)
+            var canvasVm = vm.CanvasViewModel;
+
+            if (canvasVm.MazeFrameData.SizeX == 0 || canvasVm.MazeFrameData.SizeY == 0)
                 return;
 
-            var canvasVm = vm.CanvasViewModel;
             // 線分をクリア
             canvasVm.ClearViewElementCommand?.Execute( null );
 
             DrawFrame( vm, canvasVm );
             DrawWalls( vm, canvasVm );
+            DrawBoxes( vm, canvasVm );
         }
 
         void DrawFrame( MainWindowViewModel vm, MazeFrameViewModel canvasVm )
         {
-            var factor = (canvasVm.Size - canvasVm.Margin * 2) / (double)vm.MazeFrameData.SizeX;
+            var factor = (canvasVm.Size - canvasVm.Margin * 2) / (double)canvasVm.MazeFrameData.SizeX;
 
             // 縦線
-            for (var i = 0; i <= vm.MazeFrameData.SizeX; ++i) {
+            for (var i = 0; i <= canvasVm.MazeFrameData.SizeX; ++i) {
                 var x = canvasVm.Margin + i * factor;
                 var yLine = NewLine( x, 0d + canvasVm.Margin, x, canvasVm.Size - canvasVm.Margin, 1d );
                 canvasVm.AddViewElementCommand?.Execute( yLine );
             }
 
             // 横線
-            for (var j = 0; j <= vm.MazeFrameData.SizeY; ++j) {
+            for (var j = 0; j <= canvasVm.MazeFrameData.SizeY; ++j) {
                 var y = canvasVm.Margin + j * factor;
                 var xLine = NewLine( 0d + canvasVm.Margin, y, canvasVm.Size - canvasVm.Margin, y, 1d );
                 canvasVm.AddViewElementCommand?.Execute( xLine );
@@ -40,9 +42,9 @@ namespace HakoMaze.Logics
 
         void DrawWalls( MainWindowViewModel vm, MazeFrameViewModel canvasVm )
         {
-            var wallLength = (canvasVm.Size - canvasVm.Margin * 2) / (double)vm.MazeFrameData.SizeX;
+            var wallLength = (canvasVm.Size - canvasVm.Margin * 2) / (double)canvasVm.MazeFrameData.SizeX;
 
-            foreach (var position in vm.MazeFrameData.WallPositions) {
+            foreach (var position in canvasVm.MazeFrameData.WallPositions) {
                 var p1 = position.Item1;
                 var p2 = position.Item2;
 
@@ -52,6 +54,10 @@ namespace HakoMaze.Logics
                 canvasVm.AddViewElementCommand?.Execute( wallLine );
             }
 
+        }
+
+        void DrawBoxes( MainWindowViewModel vm, MazeFrameViewModel canvasVm )
+        {
         }
 
         Line NewLine( double x1, double y1, double x2, double y2, double thickness ) =>

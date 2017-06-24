@@ -59,8 +59,14 @@ namespace HakoMaze.Common
             ActiveCommand.OnMove();
         }
 
-        void View_MouseLeftButtonDown( object sender, MouseButtonEventArgs e ) =>
-            ActiveCommand?.OnAct();
+        void View_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+        {
+            if (ActiveCommand == null)
+                return;
+
+            ActiveCommand.OnAct();
+            ActiveCommand.StopsAct = false;
+        }
 
         Point? ComputePosition( MouseEventArgs e )
         {

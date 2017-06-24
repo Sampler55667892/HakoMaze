@@ -1,4 +1,5 @@
 ﻿using HakoMaze.Common;
+using HakoMaze.Models;
 
 namespace HakoMaze.ViewModels
 {
@@ -14,6 +15,9 @@ namespace HakoMaze.ViewModels
             }
         }
 
+        public MazeFrameData MazeFrameData { get; private set; }
+        public MazeContentData MazeContentData { get; private set; }
+
         public int Margin { get; set; }
 
         // View側で設定
@@ -21,5 +25,11 @@ namespace HakoMaze.ViewModels
 
         // View側で設定
         public RelayCommand ClearViewElementCommand { get; set; }
+
+        public MazeFrameViewModel( MazeFrameData mazeFrameData, MazeContentData mazeContentData )
+        {
+            this.MazeFrameData = mazeFrameData;
+            this.MazeContentData = mazeContentData;
+        }
     }
 }

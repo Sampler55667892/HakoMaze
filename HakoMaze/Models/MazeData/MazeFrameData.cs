@@ -38,6 +38,8 @@ namespace HakoMaze.Models
             wallPositions.Remove( position );
             return true;
         }
+
+        public void ClearWallPositions() => wallPositions.Clear();
             
         //xxxxx (マップデータ)
     }

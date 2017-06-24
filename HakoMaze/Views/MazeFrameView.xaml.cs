@@ -35,6 +35,7 @@ namespace HakoMaze.Views
                     var canvas = this.FindFirst<Canvas>();
                     if (canvas != null)
                         canvas.Children.Clear();
+                    // ここでは壁データはクリアしない
                 });
             }
         }

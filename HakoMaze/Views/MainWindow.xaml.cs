@@ -7,17 +7,13 @@ namespace HakoMaze.Views
 {
     public partial class MainWindow : Window
     {
-        CommandScheduler commandScheduler;
-
         public MainWindow()
         {
             // DataContext が変更される前に追加
             DataContextChanged += MainWindow_DataContextChanged;
-            InitializeComponent();
             Loaded += MainWindow_Loaded;
 
-            commandScheduler = new CommandScheduler( this );
-            DataContext = new MainWindowViewModel( commandScheduler );
+            InitializeComponent();
         }
 
         protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
@@ -33,9 +29,6 @@ namespace HakoMaze.Views
             if (DataContext is MainWindowViewModel vm) {
                 vm.CloseCommand = new RelayCommand( x => Close() );
 
-                var canvasVm = new MazeFrameViewModel { Size = 380, Margin = 10 };
-                vm.CanvasViewModel = canvasVm;
-
                 // バージョン情報を表示
                 vm.HistoryMessageAreaText = "2017/06/18～2017/06/24 Written by Kodera Hiroshi.";
             }
@@ -45,9 +38,11 @@ namespace HakoMaze.Views
         {
             Loaded -= MainWindow_Loaded;
 
-            // MazeFrameView相対の座標計算用 (Canvas相対に設定するとずれる)
-            commandScheduler.ChildView = this.FindFirst<MazeFrameView>();
-            commandScheduler.ComputesRelativePositionFromChildView = true;
+            if (DataContext is MainWindowViewModel vm) {
+                // MazeFrameView相対の座標計算用 (Canvas相対に設定するとずれる)
+                vm.CommandScheduler.ChildView = this.FindFirst<MazeFrameView>();
+                vm.CommandScheduler.ComputesRelativePositionFromChildView = true;
+            }
         }
     }
 }

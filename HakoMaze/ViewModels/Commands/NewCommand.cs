@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-using System.Windows.Shapes;
-using HakoMaze.Views;
+﻿using HakoMaze.Views;
 using HakoMaze.Logics;
 
 namespace HakoMaze.ViewModels
@@ -15,17 +13,21 @@ namespace HakoMaze.ViewModels
         {
             base.OnInitialize();
 
+            ClearWalls();
             QuerySize();
             ShowFrame();
         }
+
+        void ClearWalls() =>
+            ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();
 
         void QuerySize()
         {
             var sizeDialog = new SizeSettingDialog();
             sizeDialog.ShowDialog();    // スレッドをブロック
             if (sizeDialog.DataContext is SizeSettingDialogViewModel sizeVm) {
-                ViewModel.MazeFrameData.SizeX = sizeVm.Size;
-                ViewModel.MazeFrameData.SizeY = sizeVm.Size;
+                CanvasViewModel.MazeFrameData.SizeX = sizeVm.Size;
+                CanvasViewModel.MazeFrameData.SizeY = sizeVm.Size;
             }
         }
 

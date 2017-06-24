@@ -1,18 +1,12 @@
 ﻿using Common.WpfCommands;
 using HakoMaze.Common;
 using HakoMaze.Constants;
-using HakoMaze.Models;
 
 namespace HakoMaze.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        CommandScheduler commandScheduler;
-        MazeFrameData mazeFrameData = new MazeFrameData();
-        MazeContentData mazeContentData = new MazeContentData();
-
-        public MazeFrameData MazeFrameData => mazeFrameData;
-        public MazeContentData MazeContentData => mazeContentData;
+        public CommandScheduler CommandScheduler { get; private set; }
 
         MazeFrameViewModel canvasViewModel;
         public MazeFrameViewModel CanvasViewModel
@@ -57,10 +51,10 @@ namespace HakoMaze.ViewModels
 
         public MainWindowViewModel( CommandScheduler commandScheduler )
         {
-            this.commandScheduler = commandScheduler;
+            this.CommandScheduler = commandScheduler;
         }
 
         SwitchCommand New( string key ) =>
-            new SwitchCommand( commandScheduler, MainWindowCommandFactory.New( key, this ) );
+            new SwitchCommand( CommandScheduler, MainWindowCommandFactory.New( key, this ) );
     }
 }

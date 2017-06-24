@@ -7,6 +7,7 @@ namespace HakoMaze.Common
         protected ViewModelBase ViewModel { get; private set; }
         protected int Step { get; private set; }
         public Point Position { get; internal set; }
+        internal protected bool StopsAct { get; set; }
         public dynamic Output { get; private set; }
 
         public Command( ViewModelBase vm )

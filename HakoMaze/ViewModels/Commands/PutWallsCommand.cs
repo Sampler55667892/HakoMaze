@@ -21,7 +21,7 @@ namespace HakoMaze.ViewModels
             base.OnAct();
 
             // サイズの初期設定前
-            if (ViewModel.MazeFrameData.SizeX == 0 || ViewModel.MazeFrameData.SizeY == 0) {
+            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
                 MessageBox.Show( "フレームのサイズが 0 です" );
                 return;
             }
@@ -29,20 +29,20 @@ namespace HakoMaze.ViewModels
             // Canvasのマージン補正
             var canvasMargin = ViewModel.CanvasViewModel.Margin;
             var physicalPosition = new Point( Position.X - canvasMargin, Position.Y - canvasMargin );
-            var wallLength = (ViewModel.CanvasViewModel.Size - canvasMargin * 2) / (double)ViewModel.MazeFrameData.SizeX;
+            var wallLength = (ViewModel.CanvasViewModel.Size - canvasMargin * 2) / (double)CanvasViewModel.MazeFrameData.SizeX;
             var pickMargin = 10;
 
-            var hitIndex = new SearchHitWallLogic().Search( ViewModel.MazeFrameData.SizeX, physicalPosition, wallLength, pickMargin );
+            var hitIndex = new SearchHitWallLogic().Search( CanvasViewModel.MazeFrameData.SizeX, physicalPosition, wallLength, pickMargin );
             if (!hitIndex.HasValue)
                 return;
 
             var positionString = $"({hitIndex.Value.Item1}, {hitIndex.Value.Item2})";
 
-            if (ViewModel.MazeFrameData.ExistsWallPosition( hitIndex.Value )) {
-                ViewModel.MazeFrameData.DeleteWallPosition( hitIndex.Value );
+            if (CanvasViewModel.MazeFrameData.ExistsWallPosition( hitIndex.Value )) {
+                CanvasViewModel.MazeFrameData.DeleteWallPosition( hitIndex.Value );
                 AddHistoryMessage( $"壁を削除: {positionString}" );
             } else {
-                ViewModel.MazeFrameData.AddWallPosition( hitIndex.Value );
+                CanvasViewModel.MazeFrameData.AddWallPosition( hitIndex.Value );
                 AddHistoryMessage( $"壁を追加: {positionString}" );
             }
 

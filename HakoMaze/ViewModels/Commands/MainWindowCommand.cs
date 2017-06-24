@@ -6,6 +6,7 @@ namespace HakoMaze.ViewModels
     public class MainWindowCommand : Command
     {
         protected new MainWindowViewModel ViewModel { get; private set; }
+        protected MazeFrameViewModel CanvasViewModel => ViewModel.CanvasViewModel;
 
         public MainWindowCommand( MainWindowViewModel vm ) : base( vm ) =>
             this.ViewModel = base.ViewModel as MainWindowViewModel;

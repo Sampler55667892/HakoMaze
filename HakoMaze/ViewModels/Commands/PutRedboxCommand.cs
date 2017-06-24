@@ -11,6 +11,10 @@ namespace HakoMaze.ViewModels
         public override void OnAct()
         {
             base.OnAct();
+            if (StopsAct)
+                return;
+
+            //...
         }
     }
 }
