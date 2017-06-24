@@ -1,0 +1,88 @@
+﻿<Window x:Class="HakoMaze.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:HakoMaze.Views"
+        Background="#01000000"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="HakoMaze"
+        Width="800" Height="600"
+        MaxWidth="800" MinWidth="800"
+        MaxHeight="600" MinHeight="600">
+    <Window.Resources>
+        <SolidColorBrush x:Key="MenuBackColor" Color="#BB0000ff" />
+        <SolidColorBrush x:Key="ToolbarTrayBackColor" Color="#880000ff" />
+        <SolidColorBrush x:Key="ClientBaseColor" Color="#550000ff" />
+        <SolidColorBrush x:Key="StatusbarBackColor" Color="#330000ff" />
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" Height="100">
+            <Label Height="30" Background="{StaticResource ClientBaseColor}" HorizontalContentAlignment="Right">
+                <!-- 閉じるボタン -->
+                <v:CommandHolder Command="{Binding Path=CloseCommand}">
+                    <Grid>
+                        <!-- イベントを拾う範囲を広げるための Label -->
+                        <Label />
+                        <Path Stroke="White" StrokeThickness="2">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathFigure StartPoint="0,0" IsClosed="False">
+                                        <LineSegment Point="15,15" />
+                                    </PathFigure>
+                                    <PathFigure StartPoint="0,15" IsClosed="False">
+                                        <LineSegment Point="15,0" />
+                                    </PathFigure>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </Grid>
+                </v:CommandHolder>
+            </Label>
+            <Menu Height="25" Background="{StaticResource MenuBackColor}">
+                <MenuItem Header="ファイル" Foreground="White">
+                    <MenuItem.Resources>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Style.Setters>
+                                <Setter Property="Foreground" Value="Black" />
+                            </Style.Setters>
+                        </Style>
+                    </MenuItem.Resources>
+
+                    <MenuItem Header="新規作成する" Command="{Binding Path=NewCommand}" />
+                    <MenuItem Header="開く" Command="{Binding Path=OpenCommand}" />
+                    <MenuItem Header="保存する" Command="{Binding Path=SaveCommand}" />
+                    <MenuItem Header="閉じる" Command="{Binding Path=CloseCommand}" />
+                </MenuItem>
+            </Menu>
+            <!-- Toolbar -->
+            <ToolBarTray Height="45" Background="{StaticResource ToolbarTrayBackColor}">
+                <ToolBar>
+                    <v:CommandHolder Margin="0 0 8 0" Command="{Binding Path=PutRedboxCommand}">
+                        <Rectangle Stroke="Black" StrokeThickness="1" Fill="Red" Width="30" Height="30" />
+                    </v:CommandHolder>
+                    <v:CommandHolder Margin="0 0 8 0" Command="{Binding Path=PutYellowboxCommand}">
+                        <Rectangle Stroke="Black" StrokeThickness="1" Fill="Yellow" Width="30" Height="30" />
+                    </v:CommandHolder>
+                    <v:CommandHolder Margin="0 0 8 0" Command="{Binding Path=PutGreenboxesCommand}">
+                        <Rectangle Stroke="Black" StrokeThickness="1" Fill="Green" Width="30" Height="30" />
+                    </v:CommandHolder>
+                    <v:CommandHolder Margin="0 0 8 0" Command="{Binding Path=PutWallsCommand}">
+                        <Rectangle Stroke="Black" StrokeThickness="1" Fill="DarkGray" Width="30" Height="30" />
+                    </v:CommandHolder>
+                </ToolBar>
+            </ToolBarTray>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Height="100"
+                    Orientation="Horizontal"
+                    Background="{StaticResource StatusbarBackColor}">
+            <TextBox Width="250" Height="100" Text="{Binding Path=TempMessageLineText}"
+                     IsReadOnly="True" Background="Transparent" Foreground="White" />
+            <TextBox Width="550" Height="100" Text="{Binding Path=HistoryMessageAreaText}"
+                     IsReadOnly="True" Background="Transparent" Foreground="White" VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
+        <Grid>
+            <Label Background="{StaticResource ClientBaseColor}" />
+            <v:MazeFrameView DataContext="{Binding Path=CanvasViewModel, Mode=TwoWay}" />
+        </Grid>
+    </DockPanel>
+</Window>
