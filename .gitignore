@@ -148,3 +148,12 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+
+#VS 2017 (custom)
+_._
+.xml
+dotnet_library_license.txt
+ThirdPartyNotices.txt
+lib/netstandard1.0/System.ValueTuple.dll
+lib/portable-net40+sl4+win8+wp8/System.ValueTuple.dll
+System.ValueTuple.4.3.1.nupkg
