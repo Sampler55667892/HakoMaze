@@ -24,10 +24,15 @@ namespace HakoMaze.Views
         {
             if (DataContext is MazeFrameViewModel vm) {
                 vm.AddViewElementCommand = new RelayCommand( x => {
-                    if (x is UIElement ui) {
+                    if (x is FrameworkElement ui) {
                         var canvas = this.FindFirst<Canvas>();
-                        if (canvas != null)
+                        if (canvas != null) {
+                            if (ui.Tag is Point position) {
+                                Canvas.SetLeft( ui, position.X );
+                                Canvas.SetTop( ui, position.Y );
+                            }
                             canvas.Children.Add( ui );
+                        }
                     }
                 });
 

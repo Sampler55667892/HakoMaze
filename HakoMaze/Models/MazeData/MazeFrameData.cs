@@ -2,6 +2,7 @@
 
 namespace HakoMaze.Models
 {
+    // 非圧縮データ
     public class MazeFrameData
     {
         List<((int x1, int y1), (int x2, int y2))> wallPositions = new List<((int x1, int y1), (int x2, int y2))>();

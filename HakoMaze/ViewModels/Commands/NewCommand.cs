@@ -14,12 +14,14 @@ namespace HakoMaze.ViewModels
             base.OnInitialize();
 
             ClearWalls();
+            ClearBoxes();
             QuerySize();
             ShowFrame();
         }
 
-        void ClearWalls() =>
-            ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();
+        void ClearWalls() => ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();
+
+        void ClearBoxes() => ViewModel.CanvasViewModel.MazeContentData.ClearAllBoxes();
 
         void QuerySize()
         {

@@ -32,17 +32,17 @@ namespace HakoMaze.ViewModels
             var wallLength = (ViewModel.CanvasViewModel.Size - canvasMargin * 2) / (double)CanvasViewModel.MazeFrameData.SizeX;
             var pickMargin = 10;
 
-            var hitIndex = new SearchHitWallLogic().Search( CanvasViewModel.MazeFrameData.SizeX, physicalPosition, wallLength, pickMargin );
-            if (!hitIndex.HasValue)
+            var hitWallPosition = new SearchHitWallLogic().Search( CanvasViewModel.MazeFrameData.SizeX, physicalPosition, wallLength, pickMargin );
+            if (!hitWallPosition.HasValue)
                 return;
 
-            var positionString = $"({hitIndex.Value.Item1}, {hitIndex.Value.Item2})";
+            var positionString = $"({hitWallPosition.Value.Item1}, {hitWallPosition.Value.Item2})";
 
-            if (CanvasViewModel.MazeFrameData.ExistsWallPosition( hitIndex.Value )) {
-                CanvasViewModel.MazeFrameData.DeleteWallPosition( hitIndex.Value );
+            if (CanvasViewModel.MazeFrameData.ExistsWallPosition( hitWallPosition.Value )) {
+                CanvasViewModel.MazeFrameData.DeleteWallPosition( hitWallPosition.Value );
                 AddHistoryMessage( $"壁を削除: {positionString}" );
             } else {
-                CanvasViewModel.MazeFrameData.AddWallPosition( hitIndex.Value );
+                CanvasViewModel.MazeFrameData.AddWallPosition( hitWallPosition.Value );
                 AddHistoryMessage( $"壁を追加: {positionString}" );
             }
 

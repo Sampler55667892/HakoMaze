@@ -37,7 +37,7 @@ namespace HakoMaze.Logics
 
             // ヒットする Y 集合があるか
             var hitYSet = yRanges.FirstOrDefault( y => y.start <= physicalPosition.Y && physicalPosition.Y <= y.end );
-            if (!hitYSet.Equals((0, 0, 0))) {
+            if (!hitYSet.Equals( (0, 0, 0) )) {
                 var found = SearchYSet( frameSize, wallLength, hitYSet.i, physicalPosition.X );
                 if (found.HasValue)
                     return found.Value;
@@ -45,7 +45,7 @@ namespace HakoMaze.Logics
 
             // ヒットする T 集合があるか
             var hitTSet = tRanges.FirstOrDefault( t => t.start <= physicalPosition.X && physicalPosition.X <= t.end );
-            if (!hitTSet.Equals((0, 0, 0))) {
+            if (!hitTSet.Equals( (0, 0, 0) )) {
                 var found = SearchTSet( frameSize, wallLength, hitTSet.j, physicalPosition.Y );
                 if (found.HasValue)
                     return found.Value;
@@ -63,7 +63,7 @@ namespace HakoMaze.Logics
 
             var hitJWall = jRanges.FirstOrDefault( j => j.start <= physicalPositionX && physicalPositionX <= j.end );
 
-            return hitJWall.Equals((0, 0, 0)) ?
+            return hitJWall.Equals( (0, 0, 0) ) ?
                 (((int x1, int y1), (int x2, int y2))?)null :
                 ((hitJWall.j, hitIIndex), (hitJWall.j + 1, hitIIndex));
         }
@@ -87,7 +87,7 @@ namespace HakoMaze.Logics
 
             var hitIWall = iRanges.FirstOrDefault( i => i.start <= physicalPositionY && physicalPositionY <= i.end );
             
-            return hitIWall.Equals((0, 0, 0)) ?
+            return hitIWall.Equals( (0, 0, 0) ) ?
                 (((int x1, int y1), (int x2, int y2))?)null :
                 ((hitJIndex, hitIWall.i), (hitJIndex, hitIWall.i + 1));
         }

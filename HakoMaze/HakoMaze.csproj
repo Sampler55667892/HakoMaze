@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Constants\CommandKey.cs" />
     <Compile Include="Logics\DrawMazeFrameLogic.cs" />
+    <Compile Include="Logics\SearchHitCellLogic.cs" />
     <Compile Include="Logics\SearchHitWallLogic.cs" />
     <Compile Include="Models\MazeData\MazeContentData.cs" />
     <Compile Include="Models\MazeData\MazeFrameData.cs" />
