@@ -19,6 +19,8 @@ namespace HakoMaze.Views
         protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
         {
             base.OnMouseLeftButtonDown( e );
+            if (e.Source is MazeFrameView)
+                return;
             DragMove();
         }
 

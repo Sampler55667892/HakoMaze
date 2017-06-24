@@ -62,6 +62,7 @@
     <Compile Include="Logics\SearchHitCellLogic.cs" />
     <Compile Include="Logics\SearchHitWallLogic.cs" />
     <Compile Include="Models\MazeData\MazeContentData.cs" />
+    <Compile Include="Models\MazeData\MazeDataSerializer.cs" />
     <Compile Include="Models\MazeData\MazeFrameData.cs" />
     <Compile Include="Utilities\PositionUtility.cs" />
     <Compile Include="ViewModels\Commands\MainWindowCommand.cs" />
