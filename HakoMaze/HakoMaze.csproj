@@ -69,6 +69,7 @@
     <Compile Include="ViewModels\Commands\MainWindowCommandFactory.cs" />
     <Compile Include="ViewModels\Commands\NewCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenCommand.cs" />
+    <Compile Include="ViewModels\Commands\OpenSampleCommand.cs" />
     <Compile Include="ViewModels\Commands\PutBoxCommand.cs" />
     <Compile Include="ViewModels\Commands\PutGreenboxesCommand.cs" />
     <Compile Include="ViewModels\Commands\PutRedboxCommand.cs" />

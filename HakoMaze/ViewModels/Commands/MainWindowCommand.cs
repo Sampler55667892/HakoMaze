@@ -28,7 +28,7 @@ namespace HakoMaze.ViewModels
         protected void AddHistoryMessage( string message ) =>
             ViewModel.HistoryMessageAreaText = message + "\r\n" + ViewModel.HistoryMessageAreaText;
 
-        protected void UpdateCanvas() => CanvasViewModel?.UpdateRenderCommand.Execute( null );
+        protected void UpdateRenderCanvas() => CanvasViewModel?.UpdateRenderCommand.Execute( null );
 
         string GetDateTimeString() => DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
     }

@@ -27,7 +27,7 @@ namespace HakoMaze.ViewModels
                 return;
             }
 
-            UpdateCanvas();
+            UpdateRenderCanvas();
         }
 
         string GetFileName()

@@ -4,6 +4,7 @@
     {
         public const string New = "New";
         public const string Open = "Open";
+        public const string OpenSample = "OpenSample";
         public const string Save = "Save";
         public const string PutRedbox = "PutRedbox";
         public const string PutYellowbox = "PutYellowbox";

@@ -17,7 +17,7 @@ namespace HakoMaze.ViewModels
             ClearBoxes();
             QuerySize();
 
-            UpdateCanvas();
+            UpdateRenderCanvas();
         }
 
         void ClearWalls() => ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();

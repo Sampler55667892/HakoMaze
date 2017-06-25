@@ -50,6 +50,7 @@
 
                     <MenuItem Header="新規作成する" Command="{Binding Path=NewCommand}" />
                     <MenuItem Header="開く" Command="{Binding Path=OpenCommand}" />
+                    <MenuItem Header="サンプルを開く" Command="{Binding Path=OpenSampleCommand}" />
                     <MenuItem Header="保存する" Command="{Binding Path=SaveCommand}" />
                     <MenuItem Header="閉じる" Command="{Binding Path=CloseCommand}" />
                 </MenuItem>

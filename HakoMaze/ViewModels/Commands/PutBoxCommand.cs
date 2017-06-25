@@ -37,7 +37,7 @@ namespace HakoMaze.ViewModels
 
             // 箱データの追加・メッセージ表示
             if (ModifyContentData( hitCellPosition.Value ))
-                UpdateCanvas();
+                UpdateRenderCanvas();
         }
 
         // 他の箱と重複しないかもチェック

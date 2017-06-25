@@ -46,7 +46,7 @@ namespace HakoMaze.ViewModels
                 AddHistoryMessage( $"壁を追加: {positionString}" );
             }
 
-            UpdateCanvas();
+            UpdateRenderCanvas();
         }
     }
 }

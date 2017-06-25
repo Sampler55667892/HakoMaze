@@ -31,8 +31,11 @@ namespace HakoMaze.Views
             if (DataContext is MainWindowViewModel vm) {
                 vm.CloseCommand = new RelayCommand( x => Close() );
 
-                // バージョン情報を表示
-                vm.HistoryMessageAreaText = "2017/06/18～2017/06/24 Written by Kodera Hiroshi.";
+                // バージョン情報などを表示
+                vm.HistoryMessageAreaText =
+                    "2017/06/18～2017/06/25 Written by Kodera Hiroshi.\r\n" +
+                    "(マニュアルのルールによる探索のみ (個人の趣味で) 作成予定)\r\n" +
+                    "※監視する意味はほとんどありませんよ.";
             }
         }
 

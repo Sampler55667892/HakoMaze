@@ -40,6 +40,7 @@ namespace HakoMaze.ViewModels
 
         public SwitchCommand NewCommand => New( CommandKey.New );
         public SwitchCommand OpenCommand => New( CommandKey.Open );
+        public SwitchCommand OpenSampleCommand => New( CommandKey.OpenSample );
         public SwitchCommand SaveCommand => New( CommandKey.Save );
         public SwitchCommand PutRedboxCommand => New( CommandKey.PutRedbox );
         public SwitchCommand PutYellowboxCommand => New( CommandKey.PutYellowbox );
