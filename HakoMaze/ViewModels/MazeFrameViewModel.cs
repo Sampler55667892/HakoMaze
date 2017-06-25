@@ -26,6 +26,9 @@ namespace HakoMaze.ViewModels
         // View側で設定
         public RelayCommand ClearViewElementCommand { get; set; }
 
+        // View側で設定
+        public RelayCommand UpdateRenderCommand { get; set; }
+
         public MazeFrameViewModel( MazeFrameData mazeFrameData, MazeContentData mazeContentData )
         {
             this.MazeFrameData = mazeFrameData;

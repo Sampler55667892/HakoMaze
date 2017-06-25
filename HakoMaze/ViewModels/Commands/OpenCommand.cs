@@ -27,8 +27,7 @@ namespace HakoMaze.ViewModels
                 return;
             }
 
-            // 再描画
-            new DrawMazeFrameLogic().Draw( ViewModel );
+            UpdateCanvas();
         }
 
         string GetFileName()

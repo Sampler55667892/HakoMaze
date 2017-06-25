@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using HakoMaze.Common;
 using HakoMaze.ViewModels;
+using HakoMaze.Logics;
 
 namespace HakoMaze.Views
 {
@@ -42,6 +43,8 @@ namespace HakoMaze.Views
                         canvas.Children.Clear();
                     // ここでは壁データはクリアしない
                 });
+
+                vm.UpdateRenderCommand = new RelayCommand( x => new DrawMazeFrameLogic().Draw( vm ) );
             }
         }
     }

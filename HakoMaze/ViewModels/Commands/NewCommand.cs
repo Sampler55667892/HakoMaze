@@ -16,7 +16,8 @@ namespace HakoMaze.ViewModels
             ClearWalls();
             ClearBoxes();
             QuerySize();
-            ShowFrame();
+
+            UpdateCanvas();
         }
 
         void ClearWalls() => ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();
@@ -32,7 +33,5 @@ namespace HakoMaze.ViewModels
                 CanvasViewModel.MazeFrameData.SizeY = sizeVm.Size;
             }
         }
-
-        void ShowFrame() => new DrawMazeFrameLogic().Draw( ViewModel );
     }
 }

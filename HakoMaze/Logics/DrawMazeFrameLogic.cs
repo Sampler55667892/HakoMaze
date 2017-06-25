@@ -7,10 +7,8 @@ namespace HakoMaze.Logics
 {
     public class DrawMazeFrameLogic
     {
-        public void Draw( MainWindowViewModel vm )
+        public void Draw( MazeFrameViewModel canvasVm )
         {
-            var canvasVm = vm.CanvasViewModel;
-
             if (canvasVm.MazeFrameData.SizeX == 0 || canvasVm.MazeFrameData.SizeY == 0)
                 return;
 
@@ -19,12 +17,12 @@ namespace HakoMaze.Logics
 
             var wallLength = (canvasVm.Size - canvasVm.Margin * 2) / (double)canvasVm.MazeFrameData.SizeX;
 
-            DrawFrame( vm, canvasVm, wallLength );
-            DrawWalls( vm, canvasVm, wallLength );
-            DrawBoxes( vm, canvasVm, wallLength );
+            DrawFrame( canvasVm, wallLength );
+            DrawWalls( canvasVm, wallLength );
+            DrawBoxes( canvasVm, wallLength );
         }
 
-        void DrawFrame( MainWindowViewModel vm, MazeFrameViewModel canvasVm, double wallLength )
+        void DrawFrame( MazeFrameViewModel canvasVm, double wallLength )
         {
             // 縦線
             for (var i = 0; i <= canvasVm.MazeFrameData.SizeX; ++i) {
@@ -41,7 +39,7 @@ namespace HakoMaze.Logics
             }
         }
 
-        void DrawWalls( MainWindowViewModel vm, MazeFrameViewModel canvasVm, double wallLength )
+        void DrawWalls( MazeFrameViewModel canvasVm, double wallLength )
         {
             foreach (var position in canvasVm.MazeFrameData.WallPositions) {
                 var p1 = position.Item1;
@@ -54,7 +52,7 @@ namespace HakoMaze.Logics
             }
         }
 
-        void DrawBoxes( MainWindowViewModel vm, MazeFrameViewModel canvasVm, double wallLength )
+        void DrawBoxes( MazeFrameViewModel canvasVm, double wallLength )
         {
             // 赤箱
             if (canvasVm.MazeContentData.RedboxPosition.HasValue) {
