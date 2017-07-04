@@ -1,8 +1,8 @@
 ﻿using System.Windows;
+using FakeFrame;
 using HakoMaze.Models;
 using HakoMaze.ViewModels;
 using HakoMaze.Views;
-using HakoMaze.Common;
 
 namespace HakoMaze
 {
@@ -22,6 +22,9 @@ namespace HakoMaze
             mainWindow.DataContext = mainWindowViewModel;
             var canvasViewModel = new MazeFrameViewModel( mazeFrameData, mazeContentData ) { Size = 380, Margin = 10 };
             mainWindowViewModel.CanvasViewModel = canvasViewModel;
+            var treeViewModel = new RedboxTraceTreeViewModel();
+            treeViewModel.Visibility = Visibility.Hidden;
+            mainWindowViewModel.TreeViewModel = treeViewModel;
 
             Current.MainWindow = mainWindow;
             Current.MainWindow.Show();

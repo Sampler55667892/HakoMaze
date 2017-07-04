@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using HakoMaze.Common;
+using FakeFrame;
 using HakoMaze.ViewModels;
 
 namespace HakoMaze.Views
@@ -33,13 +33,14 @@ namespace HakoMaze.Views
 
                 // バージョン情報などを表示
                 vm.HistoryMessageAreaText =
-                    "2017/06/18～2017/06/25 Written by Kodera Hiroshi.\r\n" +
+                    "2017/06/18～2017/06/25, 2017/7/3～2017/7/4\r\n" +
+                    "Written by Kodera Hiroshi.\r\n" +
                     "(マニュアルのルールによる探索のみ (個人の趣味で) 作成予定)\r\n" +
                     "※監視する意味はほとんどありませんよ.";
             }
         }
 
-        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        void MainWindow_Loaded( object sender, RoutedEventArgs e )
         {
             Loaded -= MainWindow_Loaded;
 

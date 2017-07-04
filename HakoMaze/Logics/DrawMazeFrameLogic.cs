@@ -13,7 +13,7 @@ namespace HakoMaze.Logics
                 return;
 
             // 線分をクリア
-            canvasVm.ClearViewElementCommand?.Execute( null );
+            canvasVm.ClearViewItemsCommand?.Execute( null );
 
             var wallLength = (canvasVm.Size - canvasVm.Margin * 2) / (double)canvasVm.MazeFrameData.SizeX;
 
@@ -28,14 +28,14 @@ namespace HakoMaze.Logics
             for (var i = 0; i <= canvasVm.MazeFrameData.SizeX; ++i) {
                 var x = canvasVm.Margin + i * wallLength;
                 var yLine = NewLine( x, 0d + canvasVm.Margin, x, canvasVm.Size - canvasVm.Margin, 1d );
-                canvasVm.AddViewElementCommand?.Execute( yLine );
+                canvasVm.AddViewItemCommand?.Execute( yLine );
             }
 
             // 横線
             for (var j = 0; j <= canvasVm.MazeFrameData.SizeY; ++j) {
                 var y = canvasVm.Margin + j * wallLength;
                 var xLine = NewLine( 0d + canvasVm.Margin, y, canvasVm.Size - canvasVm.Margin, y, 1d );
-                canvasVm.AddViewElementCommand?.Execute( xLine );
+                canvasVm.AddViewItemCommand?.Execute( xLine );
             }
         }
 
@@ -48,7 +48,7 @@ namespace HakoMaze.Logics
                 var wallLine = NewLine( p1.x1 * wallLength + canvasVm.Margin, p1.y1 * wallLength + canvasVm.Margin,
                     p2.x2 * wallLength + canvasVm.Margin, p2.y2 * wallLength + canvasVm.Margin,
                     5d );
-                canvasVm.AddViewElementCommand?.Execute( wallLine );
+                canvasVm.AddViewItemCommand?.Execute( wallLine );
             }
         }
 
@@ -57,19 +57,19 @@ namespace HakoMaze.Logics
             // 赤箱
             if (canvasVm.MazeContentData.RedboxPosition.HasValue) {
                 var redbox = NewBox( canvasVm.MazeContentData.RedboxPosition.Value, Brushes.Red, canvasVm.Margin, wallLength );
-                canvasVm.AddViewElementCommand?.Execute( redbox );
+                canvasVm.AddViewItemCommand?.Execute( redbox );
             }
 
             // 黄箱
             if (canvasVm.MazeContentData.YellowboxPosition.HasValue) {
                 var yellowbox = NewBox( canvasVm.MazeContentData.YellowboxPosition.Value, Brushes.Yellow, canvasVm.Margin, wallLength );
-                canvasVm.AddViewElementCommand?.Execute( yellowbox );
+                canvasVm.AddViewItemCommand?.Execute( yellowbox );
             }
 
             // 緑箱
             foreach (var greenboxPosition in canvasVm.MazeContentData.GreenboxPositions) {
                 var greenbox = NewBox( greenboxPosition, Brushes.Green, canvasVm.Margin, wallLength );
-                canvasVm.AddViewElementCommand?.Execute( greenbox );
+                canvasVm.AddViewItemCommand?.Execute( greenbox );
             }
         }
 

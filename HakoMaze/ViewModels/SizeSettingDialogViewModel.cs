@@ -1,4 +1,4 @@
-﻿using HakoMaze.Common;
+﻿using FakeFrame;
 
 namespace HakoMaze.ViewModels
 {

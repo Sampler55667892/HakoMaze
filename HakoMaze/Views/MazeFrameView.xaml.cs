@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using HakoMaze.Common;
+using FakeFrame;
 using HakoMaze.ViewModels;
 using HakoMaze.Logics;
 
@@ -15,7 +15,7 @@ namespace HakoMaze.Views
         }
 
         // DataContextChanged のタイミングだと DataContext はまだ変わっていない
-        private void MazeFrameView_Loaded(object sender, RoutedEventArgs e)
+        void MazeFrameView_Loaded( object sender, RoutedEventArgs e )
         {
             Loaded -= MazeFrameView_Loaded;
             SetCommand();
@@ -23,29 +23,30 @@ namespace HakoMaze.Views
 
         void SetCommand()
         {
-            if (DataContext is MazeFrameViewModel vm) {
-                vm.AddViewElementCommand = new RelayCommand( x => {
-                    if (x is FrameworkElement ui) {
-                        var canvas = this.FindFirst<Canvas>();
-                        if (canvas != null) {
-                            if (ui.Tag is Point position) {
-                                Canvas.SetLeft( ui, position.X );
-                                Canvas.SetTop( ui, position.Y );
-                            }
-                            canvas.Children.Add( ui );
-                        }
+            if (!(DataContext is MazeFrameViewModel vm))
+                return;
+
+            vm.AddViewItemCommand = new RelayCommand( x => {
+                if (!(x is FrameworkElement ui))
+                    return;
+                var canvas = this.FindFirst<Canvas>();
+                if (canvas != null) {
+                    if (ui.Tag is Point position) {
+                        Canvas.SetLeft( ui, position.X );
+                        Canvas.SetTop( ui, position.Y );
                     }
-                });
+                    canvas.Children.Add( ui );
+                }
+            });
 
-                vm.ClearViewElementCommand = new RelayCommand( x => {
-                    var canvas = this.FindFirst<Canvas>();
-                    if (canvas != null)
-                        canvas.Children.Clear();
-                    // ここでは壁データはクリアしない
-                });
+            vm.ClearViewItemsCommand = new RelayCommand( x => {
+                var canvas = this.FindFirst<Canvas>();
+                if (canvas != null)
+                    canvas.Children.Clear();
+                // ここでは壁データはクリアしない (View要素のみクリア)
+            });
 
-                vm.UpdateRenderCommand = new RelayCommand( x => new DrawMazeFrameLogic().Draw( vm ) );
-            }
+            vm.UpdateRenderCommand = new RelayCommand( x => new DrawMazeFrameLogic().Draw( vm ) );
         }
     }
 }

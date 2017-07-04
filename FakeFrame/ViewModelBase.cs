@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace HakoMaze.Common
+namespace FakeFrame
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

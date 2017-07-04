@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HakoMaze", "HakoMaze\HakoMaze.csproj", "{E3EEE412-5DAB-4167-B53B-93040B263EF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{0A77E72A-8FBF-42F0-AB21-BCF02DB3599F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeUIParts", "FakeUIParts\FakeUIParts.csproj", "{0A77E72A-8FBF-42F0-AB21-BCF02DB3599F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeFrame", "FakeFrame\FakeFrame.csproj", "{8B986D56-8323-4538-840A-229FFA1DD2AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0A77E72A-8FBF-42F0-AB21-BCF02DB3599F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A77E72A-8FBF-42F0-AB21-BCF02DB3599F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A77E72A-8FBF-42F0-AB21-BCF02DB3599F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B986D56-8323-4538-840A-229FFA1DD2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B986D56-8323-4538-840A-229FFA1DD2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B986D56-8323-4538-840A-229FFA1DD2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B986D56-8323-4538-840A-229FFA1DD2AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

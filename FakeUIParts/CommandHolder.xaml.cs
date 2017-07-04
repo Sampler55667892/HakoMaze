@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace HakoMaze.Views
+namespace FakeUIParts
 {
     public partial class CommandHolder : UserControl
     {
@@ -36,7 +36,7 @@ namespace HakoMaze.Views
             Loaded += CommandHolder_Loaded;
         }
 
-        private void CommandHolder_Loaded(object sender, RoutedEventArgs e)
+        void CommandHolder_Loaded( object sender, RoutedEventArgs e )
         {
             Loaded -= CommandHolder_Loaded;
             SetupHandler();
@@ -54,7 +54,7 @@ namespace HakoMaze.Views
                 view.PreviewMouseLeftButtonDown -= View_PreviewMouseLeftButtonDown;
         }
 
-        private void View_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+        void View_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
         {
             Command?.Execute( CommandParameter );
             e.Handled = true;

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using HakoMaze.Common;
 
-namespace Common.WpfCommands
+namespace FakeFrame
 {
     public class SwitchCommand : ICommand
     {

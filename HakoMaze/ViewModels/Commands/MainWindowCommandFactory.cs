@@ -8,6 +8,7 @@ namespace HakoMaze.ViewModels
         public static MainWindowCommand New( string commandKey, MainWindowViewModel vm )
         {
             switch (commandKey) {
+                // ファイル
                 case CommandKey.New: return new NewCommand( vm );
                 case CommandKey.Open: return new OpenCommand( vm );
                 case CommandKey.OpenSample: return new OpenSampleCommand( vm );
@@ -16,6 +17,8 @@ namespace HakoMaze.ViewModels
                 case CommandKey.PutYellowbox: return new PutYellowboxCommand( vm );
                 case CommandKey.PutGreenboxes: return new PutGreenboxesCommand( vm );
                 case CommandKey.PutWalls: return new PutWallsCommand( vm );
+                // 探索
+                case CommandKey.ManualSearch: return new ManualSearchCommand( vm );
             }
 
             throw new NotImplementedException( $"commandKey \"{commandKey}\" は無効です" );

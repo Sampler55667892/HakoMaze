@@ -1,5 +1,4 @@
-﻿using Common.WpfCommands;
-using HakoMaze.Common;
+﻿using FakeFrame;
 using HakoMaze.Constants;
 
 namespace HakoMaze.ViewModels
@@ -15,6 +14,16 @@ namespace HakoMaze.ViewModels
             set {
                 canvasViewModel = value;
                 RaiseProperyChanged( "CanvasViewModel" );
+            }
+        }
+
+        RedboxTraceTreeViewModel treeViewModel;
+        public RedboxTraceTreeViewModel TreeViewModel
+        {
+            get { return treeViewModel; }
+            set {
+                treeViewModel = value;
+                RaiseProperyChanged( "TreeViewModel" );
             }
         }
 
@@ -38,6 +47,7 @@ namespace HakoMaze.ViewModels
             }
         }
 
+        // ファイル
         public SwitchCommand NewCommand => New( CommandKey.New );
         public SwitchCommand OpenCommand => New( CommandKey.Open );
         public SwitchCommand OpenSampleCommand => New( CommandKey.OpenSample );
@@ -46,6 +56,8 @@ namespace HakoMaze.ViewModels
         public SwitchCommand PutYellowboxCommand => New( CommandKey.PutYellowbox );
         public SwitchCommand PutGreenboxesCommand => New( CommandKey.PutGreenboxes );
         public SwitchCommand PutWallsCommand => New( CommandKey.PutWalls );
+        // 探索
+        public SwitchCommand ManualSearchCommand => New( CommandKey.ManualSearch );
 
         // View側で設定 (View要素にアクセス)
         public RelayCommand CloseCommand { get; set; }

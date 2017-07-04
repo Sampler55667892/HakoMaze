@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace HakoMaze.Common
+namespace FakeFrame
 {
     public sealed class CommandScheduler
     {
@@ -37,12 +37,14 @@ namespace HakoMaze.Common
             this.view = view;
             view.MouseMove += View_MouseMove;
             view.MouseLeftButtonDown += View_MouseLeftButtonDown;
+            view.KeyDown += View_KeyDown;
         }
 
         public void Dispose()
         {
             view.MouseMove -= View_MouseMove;
             view.MouseLeftButtonDown -= View_MouseLeftButtonDown;
+            view.KeyDown -= View_KeyDown;
         }
 
         // メモ：e.GetPosition() は System.Xaml アセンブリで定義されている
@@ -57,6 +59,7 @@ namespace HakoMaze.Common
 
             ActiveCommand.Position = position.Value;
             ActiveCommand.OnMove();
+            DetectExit();
         }
 
         void View_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
@@ -66,6 +69,18 @@ namespace HakoMaze.Common
 
             ActiveCommand.OnAct();
             ActiveCommand.StopsAct = false;
+            DetectExit();
+        }
+
+        void View_KeyDown( object sender, KeyEventArgs e )
+        {
+            if (ActiveCommand == null)
+                return;
+
+            ActiveCommand.Key = e.Key;
+            ActiveCommand.ModifierKeys = e.KeyboardDevice.Modifiers;
+            ActiveCommand.OnKey();
+            DetectExit();
         }
 
         Point? ComputePosition( MouseEventArgs e )
@@ -79,6 +94,14 @@ namespace HakoMaze.Common
                 position = e.GetPosition( childView );
 
             return position;
+        }
+
+        void DetectExit()
+        {
+            if (ActiveCommand.Exits) {
+                ActiveCommand.Exits = false;
+                ActiveCommand = null;
+            }
         }
     }
 }

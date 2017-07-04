@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace HakoMaze.Common
+namespace FakeFrame
 {
     public static class DependencyObjectExtensions
     {

@@ -47,14 +47,14 @@ namespace HakoMaze.Models
 
         public void Load( MazeFrameData data )
         {
-            this.SizeX = data.SizeX;
-            this.SizeY = data.SizeY;
+            SizeX = data.SizeX;
+            SizeY = data.SizeY;
 
-            this.ClearWallPositions();
+            ClearWallPositions();
 
             if (data.WallPositions != null) {
                 foreach (var position in data.WallPositions)
-                    this.AddWallPosition( position );
+                    AddWallPosition( position );
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace HakoMaze.Common
+namespace FakeFrame
 {
     public class RelayCommand : ICommand
     {

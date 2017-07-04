@@ -58,15 +58,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\CommandKey.cs" />
+    <Compile Include="Constants\MazeMapLegend.cs" />
+    <Compile Include="Interfaces\ICloneableT.cs" />
     <Compile Include="Logics\DrawMazeFrameLogic.cs" />
+    <Compile Include="Logics\MakeMazeMapLogic.cs" />
     <Compile Include="Logics\SearchHitCellLogic.cs" />
     <Compile Include="Logics\SearchHitWallLogic.cs" />
+    <Compile Include="Logics\SearchMovableAreaLogic.cs" />
     <Compile Include="Models\MazeData\MazeContentData.cs" />
     <Compile Include="Models\MazeData\MazeDataSerializer.cs" />
     <Compile Include="Models\MazeData\MazeFrameData.cs" />
     <Compile Include="Utilities\PositionUtility.cs" />
     <Compile Include="ViewModels\Commands\MainWindowCommand.cs" />
     <Compile Include="ViewModels\Commands\MainWindowCommandFactory.cs" />
+    <Compile Include="ViewModels\Commands\ManualSearchCommand.cs" />
     <Compile Include="ViewModels\Commands\NewCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenCommand.cs" />
     <Compile Include="ViewModels\Commands\OpenSampleCommand.cs" />
@@ -78,20 +83,18 @@
     <Compile Include="ViewModels\Commands\SaveCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MazeFrameViewModel.cs" />
+    <Compile Include="ViewModels\RedboxTraceTreeViewModel.cs" />
     <Compile Include="ViewModels\SizeSettingDialogViewModel.cs" />
-    <Compile Include="Views\CustomControls\CommandHolderView.xaml.cs">
-      <DependentUpon>CommandHolderView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MazeFrameView.xaml.cs">
       <DependentUpon>MazeFrameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedboxTraceTree.xaml.cs">
+      <DependentUpon>RedboxTraceTree.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SizeSettingDialog.xaml.cs">
       <DependentUpon>SizeSettingDialog.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\CustomControls\CommandHolderView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="_Debug\_DebugDump.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MazeFrameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RedboxTraceTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,9 +151,13 @@
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\FakeFrame\FakeFrame.csproj">
+      <Project>{8b986d56-8323-4538-840a-229ffa1dd2aa}</Project>
+      <Name>FakeFrame</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FakeUIParts\FakeUIParts.csproj">
       <Project>{0a77e72a-8fbf-42f0-ab21-bcf02db3599f}</Project>
-      <Name>Common</Name>
+      <Name>FakeUIParts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

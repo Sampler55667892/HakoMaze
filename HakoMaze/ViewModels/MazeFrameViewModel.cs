@@ -1,4 +1,4 @@
-﻿using HakoMaze.Common;
+﻿using FakeFrame;
 using HakoMaze.Models;
 
 namespace HakoMaze.ViewModels
@@ -21,11 +21,9 @@ namespace HakoMaze.ViewModels
         public int Margin { get; set; }
 
         // View側で設定
-        public RelayCommand AddViewElementCommand { get; set; }
-
+        public RelayCommand AddViewItemCommand { get; set; }
         // View側で設定
-        public RelayCommand ClearViewElementCommand { get; set; }
-
+        public RelayCommand ClearViewItemsCommand { get; set; }
         // View側で設定
         public RelayCommand UpdateRenderCommand { get; set; }
 

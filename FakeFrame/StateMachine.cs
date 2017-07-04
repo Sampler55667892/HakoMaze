@@ -1,4 +1,4 @@
-﻿namespace HakoMaze.Common
+﻿namespace FakeFrame
 {
     // ムーア機械としよう
     public abstract class StateMachine<T>

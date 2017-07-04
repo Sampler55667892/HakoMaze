@@ -9,6 +9,17 @@ namespace HakoMaze.ViewModels
         {
         }
 
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            // サイズの初期設定前
+            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
+                MessageBox.Show( "フレームのサイズが 0 です" );
+                Exits = true;
+            }
+        }
+
         public override void OnMove()
         {
             base.OnMove();
@@ -19,12 +30,6 @@ namespace HakoMaze.ViewModels
         public override void OnAct()
         {
             base.OnAct();
-
-            // サイズの初期設定前
-            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
-                MessageBox.Show( "フレームのサイズが 0 です" );
-                return;
-            }
 
             // Canvasのマージン補正
             var canvasMargin = ViewModel.CanvasViewModel.Margin;

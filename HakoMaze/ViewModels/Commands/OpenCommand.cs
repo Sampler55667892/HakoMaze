@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Windows;
 using Microsoft.Win32;
-using HakoMaze.Logics;
 using HakoMaze.Models;
 
 namespace HakoMaze.ViewModels
 {
-    // TODO: Implements
     public class OpenCommand : MainWindowCommand
     {
         public OpenCommand( MainWindowViewModel vm ) : base( vm )

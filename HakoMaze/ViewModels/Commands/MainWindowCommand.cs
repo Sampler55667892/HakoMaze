@@ -1,5 +1,5 @@
 ﻿using System;
-using HakoMaze.Common;
+using FakeFrame;
 
 namespace HakoMaze.ViewModels
 {
@@ -7,6 +7,7 @@ namespace HakoMaze.ViewModels
     {
         protected new MainWindowViewModel ViewModel { get; private set; }
         protected MazeFrameViewModel CanvasViewModel => ViewModel.CanvasViewModel;
+        protected RedboxTraceTreeViewModel TreeViewModel => ViewModel.TreeViewModel;
 
         public MainWindowCommand( MainWindowViewModel vm ) : base( vm ) =>
             this.ViewModel = base.ViewModel as MainWindowViewModel;
