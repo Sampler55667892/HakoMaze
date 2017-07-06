@@ -25,6 +25,11 @@ namespace HakoMaze.Data
             YellowboxPosition.HasValue &&
             GreenboxPositions.Any();
 
+        public int CountBoxes =>
+            (RedboxPosition.HasValue ? 1 : 0) +
+            (YellowboxPosition.HasValue ? 1 : 0) +
+            GreenboxPositions.Count;
+
         public bool AddGreenbox( (int x, int y) position )
         {
             if (greenboxPositions.Contains( position ))

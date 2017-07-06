@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MazeContentData.cs" />
-    <Compile Include="MazeDataSerializer.cs" />
-    <Compile Include="MazeFrameData.cs" />
-    <Compile Include="MazeMapLegend.cs" />
+    <Compile Include="Uncompressed\MazeContentData.cs" />
+    <Compile Include="Uncompressed\MazeDataSerializer.cs" />
+    <Compile Include="Uncompressed\MazeFrameData.cs" />
+    <Compile Include="Constants\MazeMapLegend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +57,9 @@
       <Project>{8b986d56-8323-4538-840a-229ffa1dd2aa}</Project>
       <Name>FakeFrame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Compressed\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

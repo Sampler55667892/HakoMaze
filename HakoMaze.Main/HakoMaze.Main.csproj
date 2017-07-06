@@ -87,7 +87,6 @@
     <Compile Include="Views\SizeSettingDialog.xaml.cs">
       <DependentUpon>SizeSettingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="_Debug\_DebugDump.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

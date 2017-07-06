@@ -7,8 +7,7 @@ namespace HakoMaze.CoreLogic
         // MazeMap 上で計算
         public bool CanMove( MazeFrameData frameData, MazeContentData contentData, (int x, int y) moveVector )
         {
-            var makeMapLogic = new MakeMazeMapLogic();
-            var map = makeMapLogic.MakeMazeMap( frameData, contentData );
+            var map = new MakeMazeMapLogic().MakeMazeMap( frameData, contentData );
             var mapSize = map.GetLength( 0 );
 
             // _Dump
@@ -50,6 +49,12 @@ namespace HakoMaze.CoreLogic
             }
 
             return true;
+        }
+
+        // TODO: 実装
+        // 赤箱の稼働範囲をマーキング
+        public void MarkRedboxMovableArea( int[,] map, int mapSize )
+        {
         }
     }
 }
