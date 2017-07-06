@@ -46,6 +46,7 @@
     <Compile Include="MazeContentData.cs" />
     <Compile Include="MazeDataSerializer.cs" />
     <Compile Include="MazeFrameData.cs" />
+    <Compile Include="MazeMapLegend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

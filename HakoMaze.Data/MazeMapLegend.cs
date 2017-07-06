@@ -1,4 +1,4 @@
-﻿namespace HakoMaze.Main.Constants
+﻿namespace HakoMaze.Data
 {
     public class MazeMapLegend
     {

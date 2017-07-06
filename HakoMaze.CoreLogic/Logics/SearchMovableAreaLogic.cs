@@ -1,7 +1,6 @@
 ﻿using HakoMaze.Data;
-using HakoMaze.Main.Constants;
 
-namespace HakoMaze.Main.Logics
+namespace HakoMaze.CoreLogic
 {
     public class SearchMovableAreaLogic
     {

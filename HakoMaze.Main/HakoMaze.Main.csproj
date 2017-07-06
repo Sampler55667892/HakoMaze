@@ -58,12 +58,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\CommandKey.cs" />
-    <Compile Include="Constants\MazeMapLegend.cs" />
     <Compile Include="Logics\DrawMazeFrameLogic.cs" />
-    <Compile Include="Logics\MakeMazeMapLogic.cs" />
     <Compile Include="Logics\SearchHitCellLogic.cs" />
     <Compile Include="Logics\SearchHitWallLogic.cs" />
-    <Compile Include="Logics\SearchMovableAreaLogic.cs" />
     <Compile Include="Commands\AutoSearchCommand.cs" />
     <Compile Include="Commands\MainWindowCommand.cs" />
     <Compile Include="Commands\MainWindowCommandFactory.cs" />

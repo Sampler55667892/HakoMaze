@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
+    <Compile Include="Logics\MakeMazeMapLogic.cs" />
     <Compile Include="PositionUtility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Logics\SearchMovableAreaLogic.cs" />
+    <Compile Include="_Debug\_DebugDump.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

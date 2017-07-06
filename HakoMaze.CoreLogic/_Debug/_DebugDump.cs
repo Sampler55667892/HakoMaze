@@ -2,7 +2,7 @@
 using System.Text;
 using HakoMaze.Data;
 
-namespace HakoMaze.Main
+namespace HakoMaze.CoreLogic
 {
     public static class _DebugDump
     {

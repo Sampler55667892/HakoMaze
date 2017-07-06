@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using HakoMaze.Main.Logics;
+using HakoMaze.CoreLogic;
 using HakoMaze.Main.ViewModels;
 
 namespace HakoMaze.Main.Commands
