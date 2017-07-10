@@ -54,9 +54,7 @@ namespace HakoMaze.Main.Commands
         }
 
         // 計算状況の最低限の表示 (Header でハンドリング)
-        public void Listen( ObjectMessage<string> message )
-        {
+        public void Listen( ObjectMessage<string> message ) =>
             AddHistoryMessage( message.Content );
-        }
     }
 }
