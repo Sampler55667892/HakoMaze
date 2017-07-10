@@ -6,8 +6,6 @@ namespace HakoMaze.Main.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public CommandScheduler CommandScheduler { get; private set; }
-
         MazeFrameViewModel canvasViewModel;
         public MazeFrameViewModel CanvasViewModel
         {
@@ -49,27 +47,22 @@ namespace HakoMaze.Main.ViewModels
         }
 
         // ファイル
-        public SwitchCommand NewCommand => New( CommandKey.New );
-        public SwitchCommand OpenCommand => New( CommandKey.Open );
-        public SwitchCommand OpenSampleCommand => New( CommandKey.OpenSample );
-        public SwitchCommand SaveCommand => New( CommandKey.Save );
-        public SwitchCommand PutRedboxCommand => New( CommandKey.PutRedbox );
-        public SwitchCommand PutYellowboxCommand => New( CommandKey.PutYellowbox );
-        public SwitchCommand PutGreenboxesCommand => New( CommandKey.PutGreenboxes );
-        public SwitchCommand PutWallsCommand => New( CommandKey.PutWalls );
+        public RelayCommand NewCommand => New( CommandKey.New );
+        public RelayCommand OpenCommand => New( CommandKey.Open );
+        public RelayCommand OpenSampleCommand => New( CommandKey.OpenSample );
+        public RelayCommand SaveCommand => New( CommandKey.Save );
+        public RelayCommand PutRedboxCommand => New( CommandKey.PutRedbox );
+        public RelayCommand PutYellowboxCommand => New( CommandKey.PutYellowbox );
+        public RelayCommand PutGreenboxesCommand => New( CommandKey.PutGreenboxes );
+        public RelayCommand PutWallsCommand => New( CommandKey.PutWalls );
         // 探索
-        public SwitchCommand ManualSearchCommand => New( CommandKey.ManualSearch );
-        public SwitchCommand AutoSearchCommand => New( CommandKey.AutoSearch );
+        public RelayCommand ManualSearchCommand => New( CommandKey.ManualSearch );
+        public RelayCommand AutoSearchCommand => New( CommandKey.AutoSearch );
 
         // View側で設定 (View要素にアクセス)
         public RelayCommand CloseCommand { get; set; }
 
-        public MainWindowViewModel( CommandScheduler commandScheduler )
-        {
-            this.CommandScheduler = commandScheduler;
-        }
-
-        SwitchCommand New( string key ) =>
-            new SwitchCommand( CommandScheduler, MainWindowCommandFactory.New( key, this ) );
+        RelayCommand New( string key ) =>
+            new RelayCommand( x => CommandQueue.Instance.Enqueue( MainWindowCommandFactory.New( key, this ) ) );
     }
 }

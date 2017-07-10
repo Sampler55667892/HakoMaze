@@ -20,8 +20,6 @@ namespace FakeFrame
             }
         }
 
-        public bool ComputesRelativePositionFromChildView { get; set; }
-
         public Command ActiveCommand
         {
             get { return activeCommand; }
@@ -38,6 +36,8 @@ namespace FakeFrame
             view.MouseMove += View_MouseMove;
             view.MouseLeftButtonDown += View_MouseLeftButtonDown;
             view.KeyDown += View_KeyDown;
+
+            CommandQueue.Instance.EnqueueEvent += CommandQueue_EnqueueEvent;
         }
 
         public void Dispose()
@@ -45,6 +45,8 @@ namespace FakeFrame
             view.MouseMove -= View_MouseMove;
             view.MouseLeftButtonDown -= View_MouseLeftButtonDown;
             view.KeyDown -= View_KeyDown;
+
+            CommandQueue.Instance.EnqueueEvent -= CommandQueue_EnqueueEvent;
         }
 
         // メモ：e.GetPosition() は System.Xaml アセンブリで定義されている
@@ -83,6 +85,15 @@ namespace FakeFrame
             DetectExit();
         }
 
+        void CommandQueue_EnqueueEvent( Type type, QueueEventArgs args )
+        {
+            if (!(type == typeof(Command)))
+                return;
+            lock (this) {
+                ActiveCommand = CommandQueue.Instance.Dequeue();
+            }
+        }
+
         Point? ComputePosition( MouseEventArgs e )
         {
             // LeftButtonDown 時に (0, 0) になる
@@ -90,7 +101,7 @@ namespace FakeFrame
             if (position.X == 0 && position.Y == 0)
                 return null;
 
-            if (ComputesRelativePositionFromChildView && ChildView != null)
+            if (ChildView != null)
                 position = e.GetPosition( childView );
 
             return position;

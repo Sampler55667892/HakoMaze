@@ -11,7 +11,6 @@ namespace HakoMaze.Main.Views
         {
             // DataContext が変更される前に追加
             DataContextChanged += MainWindow_DataContextChanged;
-            Loaded += MainWindow_Loaded;
 
             InitializeComponent();
         }
@@ -37,17 +36,6 @@ namespace HakoMaze.Main.Views
                     "Written by Kodera Hiroshi.\r\n" +
                     "(マニュアルのルールによる探索のみ (個人の趣味で) 作成予定)\r\n" +
                     "※監視する意味はほとんどありませんよ.";
-            }
-        }
-
-        void MainWindow_Loaded( object sender, RoutedEventArgs e )
-        {
-            Loaded -= MainWindow_Loaded;
-
-            if (DataContext is MainWindowViewModel vm) {
-                // MazeFrameView相対の座標計算用 (Canvas相対に設定するとずれる)
-                vm.CommandScheduler.ChildView = this.FindFirst<MazeFrameView>();
-                vm.CommandScheduler.ComputesRelativePositionFromChildView = true;
             }
         }
     }
