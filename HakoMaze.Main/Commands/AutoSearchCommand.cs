@@ -1,12 +1,18 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using FakeFrame;
 using HakoMaze.Main.ViewModels;
 
 namespace HakoMaze.Main.Commands
 {
-    public class AutoSearchCommand : MainWindowCommand, IListener<string>
+    public class AutoSearchCommand : MainWindowCommand, IListener<string>, ISender<string>
     {
+        List<IListener<string>> listeners = new List<IListener<string>>();
+
+        public ICollection<IListener<string>> Listeners => listeners;
+
         public AutoSearchCommand( MainWindowViewModel vm ) : base( vm )
         {
         }
@@ -16,7 +22,7 @@ namespace HakoMaze.Main.Commands
             base.OnInitialize();
 
             // サイズの初期設定前
-            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
+            if (CanvasViewModel.IsFrameSizeZero) {
                 MessageBox.Show( "フレームのサイズが 0 です" );
                 Exits = true;
                 return;
@@ -45,10 +51,26 @@ namespace HakoMaze.Main.Commands
             Exits = true;
         }
 
+        public override void OnKey()
+        {
+            base.OnKey();
+
+            if (Key == Key.Escape) {
+                var result = MessageBox.Show( "自動検索 (マニュアルルール) をキャンセルします", "確認", MessageBoxButton.OKCancel );
+                if (result == MessageBoxResult.OK)
+                    Broadcast( new ObjectMessage<string>( string.Empty, "Cancel" ) );
+            }
+        }
+
         async Task Compute()
         {
             var main = new CoreLogic.Main();
+
+            // 計算状況の受取り用
             main.Listeners.Add( this );
+
+            // 処理のキャンセル通知用
+            this.Listeners.Add( main );
 
             await Task.Run(() => main.Compute( CanvasViewModel.MazeFrameData, CanvasViewModel.MazeContentData ));
         }
@@ -56,5 +78,8 @@ namespace HakoMaze.Main.Commands
         // 計算状況の最低限の表示 (Header でハンドリング)
         public void Listen( ObjectMessage<string> message ) =>
             AddHistoryMessage( message.Content );
+
+        public void Broadcast( ObjectMessage<string> message ) =>
+            listeners.ForEach( x => x.Listen( message ) );
     }
 }

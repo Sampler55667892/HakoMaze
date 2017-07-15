@@ -20,7 +20,7 @@ namespace HakoMaze.Main.Commands
             base.OnInitialize();
 
             // サイズの初期設定前
-            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
+            if (CanvasViewModel.IsFrameSizeZero) {
                 MessageBox.Show( "フレームのサイズが 0 です" );
                 Exits = true;
                 return;
@@ -116,7 +116,7 @@ namespace HakoMaze.Main.Commands
 
             // 再描画
             CanvasViewModel.MazeContentData.Load( cloned );
-            CanvasViewModel.UpdateRenderCommand?.Execute( null );
+            CanvasViewModel.UpdateRender();
         }
 
         (int x, int y) GetMoveVector( Key key )
@@ -145,7 +145,7 @@ namespace HakoMaze.Main.Commands
 
             // 再描画
             CanvasViewModel.MazeContentData.Load( cloned );
-            CanvasViewModel.UpdateRenderCommand?.Execute( null );
+            CanvasViewModel.UpdateRender();
         }
     }
 }

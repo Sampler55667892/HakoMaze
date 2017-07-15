@@ -57,5 +57,12 @@ namespace HakoMaze.Data
                     AddWallPosition( position );
             }
         }
+
+        public void Clear()
+        {
+            SizeX =
+            SizeY = 0;
+            ClearWallPositions();
+        }
     }
 }

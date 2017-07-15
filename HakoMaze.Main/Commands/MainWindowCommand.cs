@@ -30,7 +30,7 @@ namespace HakoMaze.Main.Commands
         protected void AddHistoryMessage( string message ) =>
             ViewModel.HistoryMessageAreaText = $"{GetDateTimeString()}  {message}\r\n{ViewModel.HistoryMessageAreaText}";
 
-        protected void UpdateRenderCanvas() => CanvasViewModel?.UpdateRenderCommand.Execute( null );
+        protected void UpdateRenderCanvas() => CanvasViewModel?.UpdateRender();
 
         string GetDateTimeString() => DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
     }

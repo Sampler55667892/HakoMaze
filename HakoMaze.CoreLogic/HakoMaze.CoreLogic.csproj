@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\LogicConstraints.cs" />
+    <Compile Include="Logics\CompressMapLogic.cs" />
+    <Compile Include="Logics\ExpandMapLogic.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Logics\MakeMazeMapLogic.cs" />
     <Compile Include="Utilities\PositionUtility.cs" />

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using HakoMaze.Data;
 
@@ -6,6 +7,8 @@ namespace HakoMaze.CoreLogic
 {
     public static class _DebugDump
     {
+        public static void DumpToDesktop( int[,] map ) => Dump( $"{Environment.GetFolderPath( Environment.SpecialFolder.Desktop )}\\_dump.txt", map );
+
         public static void Dump( string filePath, int[,] map )
         {
             using (var fs = new FileStream( filePath, FileMode.CreateNew, FileAccess.Write ))
@@ -30,6 +33,10 @@ namespace HakoMaze.CoreLogic
                 case MazeMapLegend.Redbox: return "Ｒ";  
                 case MazeMapLegend.Yellowbox: return "Ｙ";
                 case MazeMapLegend.Greenbox: return "Ｇ";
+                case (MazeMapLegend.Space | MazeMapLegend.Marked): return "■";
+                case (MazeMapLegend.Redbox | MazeMapLegend.Marked): return "Ⓡ";
+                case (MazeMapLegend.Yellowbox | MazeMapLegend.Marked): return "Ⓨ";
+                case (MazeMapLegend.Greenbox | MazeMapLegend.Marked): return "Ⓖ";
             }
 
             return "　";

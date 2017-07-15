@@ -58,7 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\CommandKey.cs" />
-    <Compile Include="UILogics\DrawMazeFrameLogic.cs" />
+    <Compile Include="UILogics\DrawUtility.cs" />
     <Compile Include="UILogics\SearchHitCellLogic.cs" />
     <Compile Include="UILogics\SearchHitWallLogic.cs" />
     <Compile Include="Commands\AutoSearchCommand.cs" />

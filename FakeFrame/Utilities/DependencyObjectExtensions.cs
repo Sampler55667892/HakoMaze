@@ -7,8 +7,8 @@ namespace FakeFrame
     public static class DependencyObjectExtensions
     {
         public static T FindFirst<T>( this DependencyObject current )
-            where T : DependencyObject
-            => FindFirst<T>( current, new Predicate<T>( x => true ) );
+            where T : DependencyObject =>
+            FindFirst<T>( current, new Predicate<T>( x => true ) );
 
         public static T FindFirst<T>( this DependencyObject current, Predicate<T> predicate )
             where T : DependencyObject

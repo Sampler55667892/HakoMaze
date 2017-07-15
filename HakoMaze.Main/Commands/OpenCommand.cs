@@ -26,6 +26,19 @@ namespace HakoMaze.Main.Commands
                 return;
             }
 
+            if (CanvasViewModel.MazeFrameData.SizeX < DataConstraints.MinFrameSize ||
+                DataConstraints.MaxFrameSize < CanvasViewModel.MazeFrameData.SizeX) {
+                CanvasViewModel.MazeFrameData.Clear();
+                CanvasViewModel.MazeContentData.ClearAllBoxes();
+                MessageBox.Show( $"SizeX が {DataConstraints.MinFrameSize} ～ {DataConstraints.MaxFrameSize} の間のデータのみ読込み可能です" );
+                return;
+            }
+
+            if (CanvasViewModel.MazeFrameData.SizeX != CanvasViewModel.MazeFrameData.SizeY) {
+                MessageBox.Show( "SizeX は SizeY と一致するデータのみ読込み可能です" );
+                return;
+            }
+
             UpdateRenderCanvas();
         }
 

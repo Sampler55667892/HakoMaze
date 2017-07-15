@@ -16,7 +16,7 @@ namespace HakoMaze.Main.Commands
         {
             base.OnInitialize();
 
-            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
+            if (CanvasViewModel.IsFrameSizeZero) {
                 MessageBox.Show( "フレームのサイズが 0 です" );
                 Exits = true;
                 return;

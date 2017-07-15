@@ -1,4 +1,6 @@
-﻿using HakoMaze.Main.Views;
+﻿using System.Windows;
+using HakoMaze.Data;
+using HakoMaze.Main.Views;
 using HakoMaze.Main.ViewModels;
 
 namespace HakoMaze.Main.Commands
@@ -29,8 +31,12 @@ namespace HakoMaze.Main.Commands
             var sizeDialog = new SizeSettingDialog();
             sizeDialog.ShowDialog();    // スレッドをブロック
             if (sizeDialog.DataContext is SizeSettingDialogViewModel sizeVm) {
-                CanvasViewModel.MazeFrameData.SizeX = sizeVm.Size;
-                CanvasViewModel.MazeFrameData.SizeY = sizeVm.Size;
+                if (sizeVm.Size < DataConstraints.MinFrameSize || DataConstraints.MaxFrameSize < sizeVm.Size)
+                    MessageBox.Show( $"{DataConstraints.MinFrameSize} ～ {DataConstraints.MaxFrameSize} の範囲で入力して下さい", "error" );
+                else {
+                    CanvasViewModel.MazeFrameData.SizeX = sizeVm.Size;
+                    CanvasViewModel.MazeFrameData.SizeY = sizeVm.Size;
+                }
             }
         }
     }

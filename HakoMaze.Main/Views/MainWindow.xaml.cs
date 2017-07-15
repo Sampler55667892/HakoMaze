@@ -32,7 +32,7 @@ namespace HakoMaze.Main.Views
 
                 // バージョン情報などを表示
                 vm.HistoryMessageAreaText =
-                    "2017/06/18～2017/07/10 (休み休み作成)\r\n" +
+                    "2017/06/18～2017/07/15 (休み休み作成)\r\n" +
                     "Written by Kodera Hiroshi.\r\n" +
                     "(マニュアルのルールによる探索のみ (個人の趣味で) 作成予定)\r\n" +
                     "※監視する意味はほとんどありませんよ.";

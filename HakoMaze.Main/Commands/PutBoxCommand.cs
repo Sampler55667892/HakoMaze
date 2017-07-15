@@ -15,7 +15,7 @@ namespace HakoMaze.Main.Commands
             base.OnInitialize();
 
             // サイズの初期設定前
-            if (CanvasViewModel.MazeFrameData.SizeX == 0 || CanvasViewModel.MazeFrameData.SizeY == 0) {
+            if (CanvasViewModel.IsFrameSizeZero) {
                 MessageBox.Show( "フレームのサイズが 0 です" );
                 Exits = true;
             }
@@ -37,7 +37,7 @@ namespace HakoMaze.Main.Commands
             var physicalPosition = new Point( Position.X - canvasMargin, Position.Y - canvasMargin );
             var wallLength = (ViewModel.CanvasViewModel.Size - canvasMargin * 2) / (double)CanvasViewModel.MazeFrameData.SizeX;
 
-            var hitCellPosition = new SearchHitCellLogic().Search( CanvasViewModel.Size, physicalPosition, wallLength );
+            var hitCellPosition = new SearchHitCellLogic().Search( CanvasViewModel.MazeFrameData.SizeX, physicalPosition, wallLength );
             if (!hitCellPosition.HasValue)
                 return;
 
