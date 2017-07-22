@@ -20,6 +20,11 @@ namespace HakoMaze.Main.Commands
                 CanvasViewModel.MazeContentData.YellowboxPosition.Value.Equals( hitCellPosition ))
                 return false;
 
+            // ゴールが既にあれば何もしない
+            if (CanvasViewModel.MazeFrameData.GoalPosition.HasValue &&
+                CanvasViewModel.MazeFrameData.GoalPosition.Value.Equals( hitCellPosition ))
+                return false;
+
             // 緑箱の追加・更新
             if (CanvasViewModel.MazeContentData.ExistsGreenboxPosition( hitCellPosition )) {
                 CanvasViewModel.MazeContentData.DeleteGreenbox( hitCellPosition );

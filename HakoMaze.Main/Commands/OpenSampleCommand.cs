@@ -42,6 +42,8 @@ namespace HakoMaze.Main.Commands
                 })
                 data.AddWallPosition( wallPosition );
 
+            data.GoalPosition = (0, 5);
+
             return data;
         }
 

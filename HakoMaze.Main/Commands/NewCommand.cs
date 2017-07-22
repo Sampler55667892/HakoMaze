@@ -15,16 +15,16 @@ namespace HakoMaze.Main.Commands
         {
             base.OnInitialize();
 
-            ClearWalls();
-            ClearBoxes();
+            ClearFrame();
+            ClearContent();
             QuerySize();
 
             UpdateRenderCanvas();
         }
 
-        void ClearWalls() => ViewModel.CanvasViewModel.MazeFrameData.ClearWallPositions();
+        void ClearFrame() => ViewModel.CanvasViewModel.MazeFrameData.Clear();
 
-        void ClearBoxes() => ViewModel.CanvasViewModel.MazeContentData.ClearAllBoxes();
+        void ClearContent() => ViewModel.CanvasViewModel.MazeContentData.Clear();
 
         void QuerySize()
         {

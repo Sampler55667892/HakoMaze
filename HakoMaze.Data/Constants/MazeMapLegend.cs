@@ -8,7 +8,8 @@
         public const int Redbox = 4;
         public const int Yellowbox = 8;
         public const int Greenbox = 16;
+        public const int Goal = 32;
         // 稼働範囲の計算用
-        public const int Marked = 32;
+        public const int Marked = 64;
     }
 }

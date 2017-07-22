@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\PutGoalCommand.cs" />
     <Compile Include="Constants\CommandKey.cs" />
     <Compile Include="UILogics\DrawUtility.cs" />
     <Compile Include="UILogics\SearchHitCellLogic.cs" />
@@ -139,9 +140,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FakeFrame\FakeFrame.csproj">
       <Project>{8b986d56-8323-4538-840a-229ffa1dd2aa}</Project>
@@ -159,6 +158,9 @@
       <Project>{1525d549-2761-470b-a0a7-2bceffd47b8a}</Project>
       <Name>HakoMaze.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Goal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -32,6 +32,12 @@ namespace HakoMaze.Main.Commands
                 return;
             }
 
+            if (!CanvasViewModel.MazeFrameData.GoalPosition.HasValue) {
+                MessageBox.Show( "ゴールが設定されていません" );
+                Exits = true;
+                return;
+            }
+
             TreeViewModel.Visibility = Visibility.Visible;
 
             InitialRedboxPosition =

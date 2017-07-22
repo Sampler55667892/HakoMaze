@@ -47,7 +47,8 @@ namespace HakoMaze.Main.ViewModels
 
             UpdateFrame( wallLength ).
                 UpdateWalls( wallLength ).
-                UpdateBoxes( wallLength );
+                UpdateBoxes( wallLength ).
+                UpdateGoal( wallLength );
         }
 
         MazeFrameViewModel UpdateFrame( double wallLength )
@@ -55,15 +56,15 @@ namespace HakoMaze.Main.ViewModels
             // 縦線
             for (var i = 0; i <= MazeFrameData.SizeX; ++i) {
                 var x = Margin + i * wallLength;
-                var yLine = DrawUtility.NewLine( x, 0d + Margin, x, Size - Margin, 1d );
-                AddViewItemCommand?.Execute( yLine );
+                var yWall = DrawUtility.NewWall( x, 0d + Margin, x, Size - Margin, 1d );
+                AddViewItemCommand?.Execute( yWall );
             }
 
             // 横線
             for (var j = 0; j <= MazeFrameData.SizeY; ++j) {
                 var y = Margin + j * wallLength;
-                var xLine = DrawUtility.NewLine( 0d + Margin, y, Size - Margin, y, 1d );
-                AddViewItemCommand?.Execute( xLine );
+                var xWall = DrawUtility.NewWall( 0d + Margin, y, Size - Margin, y, 1d );
+                AddViewItemCommand?.Execute( xWall );
             }
 
             return this;
@@ -75,10 +76,10 @@ namespace HakoMaze.Main.ViewModels
                 var p1 = position.Item1;
                 var p2 = position.Item2;
 
-                var wallLine = DrawUtility.NewLine( p1.x1 * wallLength + Margin, p1.y1 * wallLength + Margin,
+                var wall = DrawUtility.NewWall( p1.x1 * wallLength + Margin, p1.y1 * wallLength + Margin,
                     p2.x2 * wallLength + Margin, p2.y2 * wallLength + Margin,
                     5d );
-                AddViewItemCommand?.Execute( wallLine );
+                AddViewItemCommand?.Execute( wall );
             }
 
             return this;
@@ -103,6 +104,38 @@ namespace HakoMaze.Main.ViewModels
                 var greenbox = DrawUtility.NewGreenbox( greenboxPosition, Margin, wallLength );
                 AddViewItemCommand?.Execute( greenbox );
             }
+
+            return this;
+        }
+
+        MazeFrameViewModel UpdateGoal( double wallLength )
+        {
+            if (!MazeFrameData.GoalPosition.HasValue)
+                return this;
+            
+            // ゴール上に箱があれば箱優先
+            // 赤箱
+            if (MazeContentData.RedboxPosition.HasValue &&
+                MazeContentData.RedboxPosition.Value.x == MazeFrameData.GoalPosition.Value.x &&
+                MazeContentData.RedboxPosition.Value.y == MazeFrameData.GoalPosition.Value.y) {
+                return this;
+            }
+            // 黄箱
+            if (MazeContentData.YellowboxPosition.HasValue &&
+                MazeContentData.YellowboxPosition.Value.x == MazeFrameData.GoalPosition.Value.x &&
+                MazeContentData.YellowboxPosition.Value.y == MazeFrameData.GoalPosition.Value.y) {
+                return this;
+            }
+            // 緑箱
+            foreach (var greenbox in MazeContentData.GreenboxPositions) {
+                if (greenbox.x == MazeFrameData.GoalPosition.Value.x &&
+                    greenbox.y == MazeFrameData.GoalPosition.Value.y) {
+                    return this;
+                }
+            }
+
+            var goal = DrawUtility.NewGoal( MazeFrameData.GoalPosition.Value, Margin, wallLength );
+            AddViewItemCommand?.Execute( goal );
 
             return this;
         }

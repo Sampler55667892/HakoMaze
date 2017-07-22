@@ -51,10 +51,12 @@ namespace HakoMaze.Main.ViewModels
         public RelayCommand OpenCommand => New( CommandKey.Open );
         public RelayCommand OpenSampleCommand => New( CommandKey.OpenSample );
         public RelayCommand SaveCommand => New( CommandKey.Save );
+        // 配置
         public RelayCommand PutRedboxCommand => New( CommandKey.PutRedbox );
         public RelayCommand PutYellowboxCommand => New( CommandKey.PutYellowbox );
         public RelayCommand PutGreenboxesCommand => New( CommandKey.PutGreenboxes );
         public RelayCommand PutWallsCommand => New( CommandKey.PutWalls );
+        public RelayCommand PutGoalCommand => New( CommandKey.PutGoal );
         // 探索
         public RelayCommand ManualSearchCommand => New( CommandKey.ManualSearch );
         public RelayCommand AutoSearchCommand => New( CommandKey.AutoSearch );

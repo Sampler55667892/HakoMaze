@@ -85,6 +85,9 @@
                             <Line Stroke="Black" StrokeThickness="2" X1="15" Y1="0" X2="15" Y2="30" />
                         </Grid>
                     </fv:CommandHolder>
+                    <fv:CommandHolder Margin="0 0 8 0" Command="{Binding Path=PutGoalCommand}">
+                        <Image Source="pack://application:,,,/Resources/Images/Goal.jpg" Width="30" Height="30" />
+                    </fv:CommandHolder>
                 </ToolBar>
             </ToolBarTray>
         </StackPanel>

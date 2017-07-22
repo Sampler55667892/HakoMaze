@@ -14,10 +14,12 @@ namespace HakoMaze.Main.Commands
                 case CommandKey.Open: return new OpenCommand( vm );
                 case CommandKey.OpenSample: return new OpenSampleCommand( vm );
                 case CommandKey.Save: return new SaveCommand( vm );
+                // 配置
                 case CommandKey.PutRedbox: return new PutRedboxCommand( vm );
                 case CommandKey.PutYellowbox: return new PutYellowboxCommand( vm );
                 case CommandKey.PutGreenboxes: return new PutGreenboxesCommand( vm );
                 case CommandKey.PutWalls: return new PutWallsCommand( vm );
+                case CommandKey.PutGoal: return new PutGoalCommand( vm );
                 // 探索
                 case CommandKey.ManualSearch: return new ManualSearchCommand( vm );
                 case CommandKey.AutoSearch: return new AutoSearchCommand( vm );

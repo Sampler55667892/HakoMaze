@@ -45,6 +45,9 @@ namespace HakoMaze.CoreLogic
             foreach (var greenbox in contentData.GreenboxPositions)
                 map[ greenbox.x * 2 + 1, greenbox.y * 2 + 1 ] = MazeMapLegend.Greenbox;
 
+            // ゴール埋め
+            map[ frameData.GoalPosition.Value.x * 2 + 1, frameData.GoalPosition.Value.y * 2 + 1 ] = MazeMapLegend.Goal;
+
             return map;
         }
     }

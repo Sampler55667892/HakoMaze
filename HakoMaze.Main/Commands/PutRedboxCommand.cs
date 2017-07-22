@@ -19,6 +19,11 @@ namespace HakoMaze.Main.Commands
             if (CanvasViewModel.MazeContentData.ExistsGreenboxPosition( hitCellPosition ))
                 return false;
 
+            // ゴールが既にあれば何もしない
+            if (CanvasViewModel.MazeFrameData.GoalPosition.HasValue &&
+                CanvasViewModel.MazeFrameData.GoalPosition.Value.Equals( hitCellPosition ))
+                return false;
+
             // 同じ位置の赤箱をクリック → 赤箱を削除
             // 赤箱がない or 異なる位置に存在 → 赤箱の位置を更新
             if (CanvasViewModel.MazeContentData.RedboxPosition.HasValue &&
@@ -28,7 +33,6 @@ namespace HakoMaze.Main.Commands
             } else {
                 CanvasViewModel.MazeContentData.RedboxPosition = hitCellPosition;
                 AddHistoryMessage( $"赤箱の追加/更新：{hitCellPosition}" );
-
             }
 
             return true;

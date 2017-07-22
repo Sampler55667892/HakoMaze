@@ -29,7 +29,7 @@ namespace HakoMaze.Main.Commands
             if (CanvasViewModel.MazeFrameData.SizeX < DataConstraints.MinFrameSize ||
                 DataConstraints.MaxFrameSize < CanvasViewModel.MazeFrameData.SizeX) {
                 CanvasViewModel.MazeFrameData.Clear();
-                CanvasViewModel.MazeContentData.ClearAllBoxes();
+                CanvasViewModel.MazeContentData.Clear();
                 MessageBox.Show( $"SizeX が {DataConstraints.MinFrameSize} ～ {DataConstraints.MaxFrameSize} の間のデータのみ読込み可能です" );
                 return;
             }

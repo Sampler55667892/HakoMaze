@@ -15,13 +15,14 @@ namespace HakoMaze.Data
 
         // 壁の位置の記録 (壁用には Zip/Unzip は使わない)
         // Serialize 用に List
+        // 壁データ
+        //   横壁
+        //     (i, j) -> (i + 1, j)
+        //   縦壁
+        //     (i, j) -> (i, j + 1)
         public List<((int x1, int y1), (int x2, int y2))> WallPositions => wallPositions;
 
-        // 壁データ
-        // 横壁
-        // (i, j) -> (i + 1, j)
-        // 竪壁
-        // (i, j) -> (i, j + 1)
+        public (int x, int y)? GoalPosition { get; set; }
 
         public bool ExistsWallPosition( ((int x1, int y1), (int x2, int y2)) position ) => wallPositions.Contains( position );
 
@@ -56,6 +57,8 @@ namespace HakoMaze.Data
                 foreach (var position in data.WallPositions)
                     AddWallPosition( position );
             }
+
+            GoalPosition = data.GoalPosition;
         }
 
         public void Clear()
@@ -63,6 +66,7 @@ namespace HakoMaze.Data
             SizeX =
             SizeY = 0;
             ClearWallPositions();
+            GoalPosition = null;
         }
     }
 }

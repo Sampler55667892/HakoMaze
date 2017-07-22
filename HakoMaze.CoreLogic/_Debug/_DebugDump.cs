@@ -35,10 +35,12 @@ namespace HakoMaze.CoreLogic
                 case MazeMapLegend.Redbox: return "Ｒ";  
                 case MazeMapLegend.Yellowbox: return "Ｙ";
                 case MazeMapLegend.Greenbox: return "Ｇ";
+                case MazeMapLegend.Goal: return "Ｅ";
                 case (MazeMapLegend.Space | MazeMapLegend.Marked): return "■";
                 case (MazeMapLegend.Redbox | MazeMapLegend.Marked): return "Ⓡ";
                 case (MazeMapLegend.Yellowbox | MazeMapLegend.Marked): return "Ⓨ";
                 case (MazeMapLegend.Greenbox | MazeMapLegend.Marked): return "Ⓖ";
+                case (MazeMapLegend.Goal | MazeMapLegend.Marked): return "Ⓔ";
             }
 
             return "　";

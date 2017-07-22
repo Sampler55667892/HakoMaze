@@ -34,6 +34,12 @@ namespace HakoMaze.Main.Commands
                 return;
             }
 
+            if (!CanvasViewModel.MazeFrameData.GoalPosition.HasValue) {
+                MessageBox.Show( "ゴールが設定されていません" );
+                Exits = true;
+                return;
+            }
+
             // 自動検索の実行確認
             var result = MessageBox.Show( "自動検索 (マニュアルルール) を開始します", "確認", MessageBoxButton.OKCancel );
             if (result == MessageBoxResult.Cancel) {

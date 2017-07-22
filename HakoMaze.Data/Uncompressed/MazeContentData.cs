@@ -59,7 +59,7 @@ namespace HakoMaze.Data
 
         public void ClearGreenboxes() => greenboxPositions.Clear();
 
-        public void ClearAllBoxes()
+        public void Clear()
         {
             RedboxPosition = null;
             YellowboxPosition = null;
@@ -68,7 +68,7 @@ namespace HakoMaze.Data
 
         public void Load( MazeContentData data )
         {
-            ClearAllBoxes();
+            Clear();
 
             RedboxPosition = data.RedboxPosition;
             YellowboxPosition = data.YellowboxPosition;
