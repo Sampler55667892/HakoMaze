@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\DataConstraints.cs" />
+    <Compile Include="History\MapHistory.cs" />
+    <Compile Include="History\MapPosition.cs" />
     <Compile Include="Uncompressed\MazeContentData.cs" />
     <Compile Include="Uncompressed\MazeDataSerializer.cs" />
     <Compile Include="Uncompressed\MazeFrameData.cs" />
     <Compile Include="Constants\MazeMapLegend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\MazeMapLegendUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

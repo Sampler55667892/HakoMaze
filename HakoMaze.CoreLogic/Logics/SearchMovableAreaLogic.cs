@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HakoMaze.Data;
+using LegendUtil = HakoMaze.Data.Utilities.MazeMapLegendUtility;
 
 namespace HakoMaze.CoreLogic
 {
@@ -36,32 +37,30 @@ namespace HakoMaze.CoreLogic
                 return false;
 
             // 移動方向に壁があれば移動不可
-            if (Matches( map[ nextPositions[ 0 ].x, nextPositions[ 0 ].y ], MazeMapLegend.HorizontalWall ) ||
-                Matches( map[ nextPositions[ 0 ].x, nextPositions[ 0 ].y ], MazeMapLegend.VerticalWall )) {
+            if (LegendUtil.Matches( map[ nextPositions[ 0 ].x, nextPositions[ 0 ].y ], MazeMapLegend.HorizontalWall ) ||
+                LegendUtil.Matches( map[ nextPositions[ 0 ].x, nextPositions[ 0 ].y ], MazeMapLegend.VerticalWall )) {
                 return false;
             }
 
             // 移動方向に箱があった場合
-            if (Matches( map[ nextPositions[ 1 ].x, nextPositions[ 1 ].y ], MazeMapLegend.Yellowbox ) ||
-                Matches( map[ nextPositions[ 1 ].x, nextPositions[ 1 ].y ], MazeMapLegend.Greenbox )) {
+            if (LegendUtil.Matches( map[ nextPositions[ 1 ].x, nextPositions[ 1 ].y ], MazeMapLegend.Yellowbox ) ||
+                LegendUtil.Matches( map[ nextPositions[ 1 ].x, nextPositions[ 1 ].y ], MazeMapLegend.Greenbox )) {
                 // 箱の隣に壁があれば移動不可
-                if (Matches( map[ nextPositions[ 2 ].x, nextPositions[ 2 ].y ], MazeMapLegend.HorizontalWall ) ||
-                    Matches( map[ nextPositions[ 2 ].x, nextPositions[ 2 ].y ], MazeMapLegend.VerticalWall )) {
+                if (LegendUtil.Matches( map[ nextPositions[ 2 ].x, nextPositions[ 2 ].y ], MazeMapLegend.HorizontalWall ) ||
+                    LegendUtil.Matches( map[ nextPositions[ 2 ].x, nextPositions[ 2 ].y ], MazeMapLegend.VerticalWall )) {
                     return false;
                 }
                 // 箱の隣が領域外でなく，かつ，箱の隣に箱があれば移動不可
                 if ((0 <= nextPositions[ 3 ].x && 0 <= nextPositions[ 3 ].y) &&
                     (nextPositions[ 3 ].x < mapSize && nextPositions[ 3 ].y < mapSize) &&
-                    (Matches( map[ nextPositions[ 3 ].x, nextPositions[ 3 ].y ], MazeMapLegend.Yellowbox ) ||
-                    Matches( map[ nextPositions[ 3 ].x, nextPositions[ 3 ].y ], MazeMapLegend.Greenbox ))) {
+                    (LegendUtil.Matches( map[ nextPositions[ 3 ].x, nextPositions[ 3 ].y ], MazeMapLegend.Yellowbox ) ||
+                    LegendUtil.Matches( map[ nextPositions[ 3 ].x, nextPositions[ 3 ].y ], MazeMapLegend.Greenbox ))) {
                     return false;
                 }
             }
 
             return true;
         }
-
-        bool Matches( int value, int legend ) => (value & legend) == legend;
 
         public void MarkRedboxMovableArea( (int x, int y) redboxPosition, int[,] map, List<((int x, int y), (int x, int y))> turningPositions ) =>
             MarkRedboxMovableArea( redboxPosition, map, turningPositions, (0, 0) );
@@ -79,9 +78,9 @@ namespace HakoMaze.CoreLogic
             map[ redboxPosition.x, redboxPosition.y ] |= MazeMapLegend.Marked;
 
             // 現座標が箱の上ならその先は移動しない
-            if (Matches( map[ redboxPosition.x, redboxPosition.y ], MazeMapLegend.Yellowbox ) ||
-                Matches( map[ redboxPosition.x, redboxPosition.y ], MazeMapLegend.Greenbox )) {
-                turningPositions.Add( (redboxPosition, preMoveVector) );
+            if (LegendUtil.Matches( map[ redboxPosition.x, redboxPosition.y ], MazeMapLegend.Yellowbox ) ||
+                LegendUtil.Matches( map[ redboxPosition.x, redboxPosition.y ], MazeMapLegend.Greenbox )) {
+                turningPositions.Add( (redboxPosition, (preMoveVector.x * 2, preMoveVector.y * 2)) );
                 return;
             }
 
@@ -95,7 +94,7 @@ namespace HakoMaze.CoreLogic
                     continue;
 
                 // 移動方向がマーク済なら何もしない
-                if (Matches( map[ nextPosition.x, nextPosition.y ], MazeMapLegend.Marked ))
+                if (LegendUtil.Matches( map[ nextPosition.x, nextPosition.y ], MazeMapLegend.Marked ))
                     continue;
 
                 // 移動

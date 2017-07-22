@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HakoMaze.Data;
+using Const = HakoMaze.CoreLogic.LogicConstraints;
 
 namespace HakoMaze.CoreLogic
 {
@@ -39,9 +40,9 @@ namespace HakoMaze.CoreLogic
 
             for (var i = 0; i < compressed.Length; ++i) {
                 var compressedOne = compressed[ i ];
-                for (var j = 0; j < LogicConstraints.CountBoxesPerULong; ++j) {
-                    var x = (int)((compressedOne >> (j * 10)) & 0b11111);
-                    var y = (int)((compressedOne >> (j * 10 + 5)) & 0b11111);
+                for (var j = 0; j < Const.CountBoxesPerULong; ++j) {
+                    var x = (int)((compressedOne >> (j * Const.CountBitsPerXY)) & 0b11111);
+                    var y = (int)((compressedOne >> (j * Const.CountBitsPerXY + Const.CountBitsPerXorY)) & 0b11111);
                     // 最小座標は (1, 1)
                     if (x == 0 || y == 0)
                         break;

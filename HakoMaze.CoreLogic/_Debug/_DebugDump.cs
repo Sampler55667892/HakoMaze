@@ -7,7 +7,9 @@ namespace HakoMaze.CoreLogic
 {
     public static class _DebugDump
     {
-        public static void DumpToDesktop( int[,] map ) => Dump( $"{Environment.GetFolderPath( Environment.SpecialFolder.Desktop )}\\_dump.txt", map );
+        static string Timestamp => DateTime.Now.ToString( "yyyyMMdd_HHmmss" );
+
+        public static void DumpToDesktop( int[,] map ) => Dump( $"{Environment.GetFolderPath( Environment.SpecialFolder.Desktop )}\\_dump_{Timestamp}.txt", map );
 
         public static void Dump( string filePath, int[,] map )
         {
