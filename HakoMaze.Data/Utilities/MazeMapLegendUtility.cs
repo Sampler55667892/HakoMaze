@@ -1,4 +1,4 @@
-﻿namespace HakoMaze.Data.Utilities
+﻿namespace HakoMaze.Data
 {
     public static class MazeMapLegendUtility
     {

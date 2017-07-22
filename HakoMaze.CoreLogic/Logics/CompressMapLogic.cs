@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using HakoMaze.Data;
-using LegendUtil = HakoMaze.Data.Utilities.MazeMapLegendUtility;
+using LegendUtil = HakoMaze.Data.MazeMapLegendUtility;
 using Const = HakoMaze.CoreLogic.LogicConstraints;
 
 namespace HakoMaze.CoreLogic
