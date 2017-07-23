@@ -2,21 +2,24 @@
 
 namespace HakoMaze.Data
 {
-    public class MapPosition
+    public class MazeMapPosition
     {
-        public MapPosition Parent { get; set; }
+        public MazeMapPosition Parent { get; set; }
         public ulong[] Position { get; set; }
 
-        public List<MapPosition> GetLinksToRoot()
+        public List<MazeMapPosition> GetLinksToRoot( bool startsFromInitial )
         {
-            var links = new List<MapPosition>();
+            var links = new List<MazeMapPosition>();
 
             AddLinkToParent( this, links );
+
+            if (startsFromInitial)
+                links.Reverse();
 
             return links;
         }
 
-        void AddLinkToParent( MapPosition currentPosition, List<MapPosition> links )
+        void AddLinkToParent( MazeMapPosition currentPosition, List<MazeMapPosition> links )
         {
             if (currentPosition == null)
                 return;

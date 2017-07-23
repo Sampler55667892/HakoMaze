@@ -5,19 +5,19 @@ using System.Linq;
 namespace HakoMaze.Data
 {
     // {Singleton}
-    public static class MapHistory
+    public static class MazeMapHistory
     {
         // C# Dictionary の内部実装 (https://csharptan.wordpress.com/2011/12/13/%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-2/)
-        static Dictionary<string, List<MapPosition>> allMapPosition = new Dictionary<string, List<MapPosition>>();
+        static Dictionary<string, List<MazeMapPosition>> allMapPosition = new Dictionary<string, List<MazeMapPosition>>();
 
         public static bool IsNewMap( ulong[] position ) => Find( position ) == null;
 
-        public static MapPosition Add( ulong[] position, MapPosition parentMapPosition )
+        public static MazeMapPosition Add( ulong[] position, MazeMapPosition parentMapPosition )
         {
             var key = MakeKey( position );
             if (!allMapPosition.ContainsKey( key )) {
-                var newOne = new MapPosition { Parent = parentMapPosition, Position = position };
-                allMapPosition.Add( key, new List<MapPosition> { newOne } );
+                var newOne = new MazeMapPosition { Parent = parentMapPosition, Position = position };
+                allMapPosition.Add( key, new List<MazeMapPosition> { newOne } );
                 return newOne;
             }
 
@@ -30,14 +30,14 @@ namespace HakoMaze.Data
                     return null;
             }
 
-            var newMapPosition = new MapPosition { Parent = parentMapPosition, Position = position };
+            var newMapPosition = new MazeMapPosition { Parent = parentMapPosition, Position = position };
             positionList.Add( newMapPosition );
 
             return newMapPosition;
         }
 
         // 逆探索
-        public static List<MapPosition> GetPositionLinks( ulong[] position ) => Find( position )?.GetLinksToRoot();
+        public static List<MazeMapPosition> GetMapPositionLinks( ulong[] position, bool startsFromInitial ) => Find( position )?.GetLinksToRoot( startsFromInitial );
 
         public static void Clear()
         {
@@ -49,10 +49,10 @@ namespace HakoMaze.Data
 
             allMapPosition.Clear();
             allMapPosition = null;  // GCに通知
-            allMapPosition = new Dictionary<string, List<MapPosition>>();
+            allMapPosition = new Dictionary<string, List<MazeMapPosition>>();
         }
 
-        static MapPosition Find( ulong[] position )
+        static MazeMapPosition Find( ulong[] position )
         {
             var key = MakeKey( position );
             if (!allMapPosition.ContainsKey( key ))

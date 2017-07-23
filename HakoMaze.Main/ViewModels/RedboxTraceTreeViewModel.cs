@@ -17,6 +17,11 @@ namespace HakoMaze.Main.ViewModels
             }
         }
 
+        public event RedboxTreeViewItemSelectedEventHandler RedboxTreeViewItemSelected;
+
         public ObservableCollection<MazeContentData> Items { get; } = new ObservableCollection<MazeContentData>();
+
+        public void RaiseSelectedItemChangedEvent( MazeContentData selectedItem ) =>
+            RedboxTreeViewItemSelected?.Invoke( this, new RedboxTreeViewItemSelectedEventArgs( selectedItem ) );
     }
 }

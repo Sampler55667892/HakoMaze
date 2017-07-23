@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using FakeFrame;
+using HakoMaze.Data;
+using HakoMaze.CoreLogic;
 using HakoMaze.Main.ViewModels;
 
 namespace HakoMaze.Main.Commands
 {
-    public class AutoSearchCommand : MainWindowCommand, IListener<string>, ISender<string>
+    public class AutoSearchCommand : MainWindowCommand, IListener<object>, ISender<string>
     {
         List<IListener<string>> listeners = new List<IListener<string>>();
 
@@ -51,10 +53,17 @@ namespace HakoMaze.Main.Commands
 
             await Compute();
 
-            MessageBox.Show( "自動検索 (マニュアルルール) が完了しました", "確認", MessageBoxButton.OKCancel );
-            AddHistoryMessage( "自動検索 (マニュアルルール) を終了" );
+            MessageBox.Show( "自動検索 (マニュアルルール) が完了しました", "確認", MessageBoxButton.OK );
+        }
 
-            Exits = true;
+        public override void OnFinalize()
+        {
+            base.OnFinalize();
+
+            TreeViewModel.RedboxTreeViewItemSelected -= TreeViewModel_RedboxTreeViewItemSelected;
+
+            TreeViewModel.Visibility = Visibility.Hidden;
+            TreeViewModel.Items.Clear();
         }
 
         public override void OnKey()
@@ -81,11 +90,45 @@ namespace HakoMaze.Main.Commands
             await Task.Run(() => main.Compute( CanvasViewModel.MazeFrameData, CanvasViewModel.MazeContentData ));
         }
 
-        // 計算状況の最低限の表示 (Header でハンドリング)
-        public void Listen( ObjectMessage<string> message ) =>
-            AddHistoryMessage( message.Content );
+        // 計算状況の表示 + 経路情報の受取り (Header でハンドリング)
+        public void Listen( ObjectMessage<object> message )
+        {
+            if (message.Header == ComputationMessageHeader.Message)
+                AddHistoryMessage( message.Content as string );
+            else if (message.Header == ComputationMessageHeader.RouteToGoal) {
+                var mapPositionList = message.Content as List<MazeMapPosition>;
+                AddToTreeView( mapPositionList );
+            }
+        }
 
         public void Broadcast( ObjectMessage<string> message ) =>
             listeners.ForEach( x => x.Listen( message ) );
+
+        void AddToTreeView( List<MazeMapPosition> mapPositionList )
+        {
+            if (mapPositionList == null)
+                return;
+
+            var expandMapLogic = new ExpandMapLogic();
+            for (var i = 0; i < mapPositionList.Count; ++i) {
+                var expandedMap = expandMapLogic.Expand( mapPositionList[ i ].Position );
+                // 非同期スレッドからUI要素にアクセス -> Dispatcher を使う
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    TreeViewModel.Items.Add( expandedMap );
+                    TreeViewModel.Visibility = Visibility.Visible;
+                });
+            }
+
+            // TreeView 上の項目選択のハンドラを登録 (登録のインタフェースは TreeView のVMが提供)
+            TreeViewModel.RedboxTreeViewItemSelected += TreeViewModel_RedboxTreeViewItemSelected;
+        }
+
+        void TreeViewModel_RedboxTreeViewItemSelected( object sender, RedboxTreeViewItemSelectedEventArgs args )
+        {
+            // 再描画
+            CanvasViewModel.MazeContentData.Load( args.Content );
+            CanvasViewModel.UpdateRender();
+        }
     }
 }

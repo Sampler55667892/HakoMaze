@@ -100,7 +100,7 @@ namespace HakoMaze.CoreLogic
                         // 移動先が箱の上である場合のみ記録 (無駄な派生の除去)
                         if (LegendUtil.Matches( map[ nextRedboxPosition.x, nextRedboxPosition.y ], MazeMapLegend.Yellowbox ) ||
                             LegendUtil.Matches( map[ nextRedboxPosition.x, nextRedboxPosition.y ], MazeMapLegend.Greenbox )) {
-                            // turningPositions の重複チェック
+                            // turningPreMovePositions の重複チェック
                             if (!turningPreMovePositions.Any(
                                     x => x.Item1.x == redboxPosition.x &&
                                     x.Item1.y == redboxPosition.y &&
@@ -109,7 +109,6 @@ namespace HakoMaze.CoreLogic
                                 turningPreMovePositions.Add( (redboxPosition, (moveVector.x * 2, moveVector.y * 2)) );
                             }
                         }
-                        continue;
                     } else
                         MarkRedboxMovableArea( nextRedboxPosition, map, turningPreMovePositions, moveVector );
                 }

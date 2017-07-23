@@ -59,6 +59,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\PutGoalCommand.cs" />
     <Compile Include="Constants\CommandKey.cs" />
+    <Compile Include="Events\RedboxTreeViewItemSelectedEventArgs.cs" />
+    <Compile Include="Events\RedboxTreeViewItemSelectedEventHandler.cs" />
     <Compile Include="UILogics\DrawUtility.cs" />
     <Compile Include="UILogics\SearchHitCellLogic.cs" />
     <Compile Include="UILogics\SearchHitWallLogic.cs" />

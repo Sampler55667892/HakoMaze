@@ -44,8 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\DataConstraints.cs" />
-    <Compile Include="History\MapHistory.cs" />
-    <Compile Include="History\MapPosition.cs" />
+    <Compile Include="History\MazeMapHistory.cs" />
+    <Compile Include="History\MazeMapPosition.cs" />
     <Compile Include="Uncompressed\MazeContentData.cs" />
     <Compile Include="Uncompressed\MazeDataSerializer.cs" />
     <Compile Include="Uncompressed\MazeFrameData.cs" />
